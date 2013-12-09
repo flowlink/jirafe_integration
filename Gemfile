@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'sinatra'
+gem 'tilt', '~> 1.4.1'
+gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
 gem 'capistrano'
 
 gem 'httparty'
@@ -19,5 +22,10 @@ group :production do
   gem 'unicorn'
 end
 
-gem 'endpoint_base', :git => 'git@github.com:spree/endpoint_base.git'
+group :development do
+  gem 'shotgun'
+  gem 'pry'
+end
+
+gem 'endpoint_base', '~> 0.1.0'
   # :path => '../endpoint_base'
