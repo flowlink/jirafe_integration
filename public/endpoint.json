@@ -1,5 +1,5 @@
 {
-  "name": "jirafe_endpoint",
+  "name": "jirafe",
   "display": "Jirafe",
   "description": "Jirafe Analytics Endpoint",
   "help": "https://github.com/spree/jirafe_endpoint",
@@ -34,7 +34,7 @@
     },
     {
       "name": "import_new_orders",
-      "path": "/import_new_orders",
+      "path": "/import_new_order",
       "description": "Sync new orders to Jirafe",
       "requires": {
         "parameters": [

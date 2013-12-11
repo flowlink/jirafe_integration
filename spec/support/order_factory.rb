@@ -141,4 +141,20 @@ module Factories
       ]
     }
   end
+
+  def self.original
+    {
+      "credit_cards" => [
+        "id" => 3,
+        "month" => "11",
+        "year" => "2013",
+        "cc_type" => "visa"
+      ],
+      "shipments" => [
+        {
+          "stock_location_name" => "Something"
+        }
+      ]
+    }
+  end
 end

@@ -25,7 +25,7 @@ RSpec.configure do |config|
   config.order = 'random'
 end
 
-ENV['ENDPOINT_KEY'] = 'x123'
+ENV['ENDPOINT_KEY'] = '6a204bd89f3c8348afd5c77c717a097a'
 
 VCR.configure do |c|
   #c.allow_http_connections_when_no_cassette = true
