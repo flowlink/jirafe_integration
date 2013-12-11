@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://event.jirafe.com/v2/123/order
+    body:
+      encoding: UTF-8
+      string: '{"order_number":"311174282","status":"placed","order_date":"2013-07-30T19
+        =>19 =>05Z","customer":{"id":"123","create_date":"2013-12-11T18:30:45.000Z","change_date":"2013-12-11T18:30:45.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"12345","visitor_id":"12345","pageview_id":"0","last_pageview_id":"0"}}'
+    headers:
+      Authorization:
+      - Bearer 123
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 11 Dec 2013 18:30:57 GMT
+      Server:
+      - nginx
+      X-Frame-Options:
+      - sameorigin
+      Content-Length:
+      - '21'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "success": true
+        }
+    http_version: 
+  recorded_at: Wed, 11 Dec 2013 18:30:52 GMT
+recorded_with: VCR 2.8.0
