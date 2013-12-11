@@ -159,6 +159,84 @@ module Factories
         {
           "stock_location_name" => "Something"
         }
+      ],
+      "line_items"=> [
+      {
+        "id"=> 2,
+        "quantity"=> 1,
+        "price"=> "22.99",
+        "variant_id"=> 2,
+        "variant"=> {
+          "id"=> 2,
+          "name"=> "Ruby on Rails Bag",
+          "sku"=> "ROR-00012",
+          "price"=> "22.99",
+          "weight"=> nil,
+          "height"=> nil,
+          "width"=> nil,
+          "depth"=> nil,
+          "is_master"=> true,
+          "cost_price"=> "21.0",
+          "permalink"=> "ruby-on-rails-bag",
+          "options_text"=> "",
+          "option_values"=> [],
+          "product_id"=> 2,
+          "images"=> [
+            {
+              "id"=> 23,
+              "position"=> 1,
+              "attachment_content_type"=> "image/jpeg",
+              "attachment_file_name"=> "ror_bag.jpeg",
+              "type"=> "Spree=>=>Image",
+              "attachment_updated_at"=> "2013-12-03T19=>54=>44Z",
+              "attachment_width"=> 360,
+              "attachment_height"=> 360,
+              "alt"=> nil,
+              "viewable_type"=> "Spree=>=>Variant",
+              "viewable_id"=> 2,
+              "attachment_url"=> "/spree/products/23/product/ror_bag.jpeg?1386100484"
+            }
+          ]
+        }
+      },
+      {
+        "id"=> 2,
+        "quantity"=> 1,
+        "price"=> "22.99",
+        "variant_id"=> 2,
+        "variant"=> {
+          "id"=> 2,
+          "name"=> "Ruby on Rails Tote",
+          "sku"=> "ROR-00013",
+          "price"=> "22.99",
+          "weight"=> nil,
+          "height"=> nil,
+          "width"=> nil,
+          "depth"=> nil,
+          "is_master"=> true,
+          "cost_price"=> "21.0",
+          "permalink"=> "ruby-on-rails-tote",
+          "options_text"=> "",
+          "option_values"=> [],
+          "product_id"=> 2,
+          "images"=> [
+            {
+              "id"=> 23,
+              "position"=> 1,
+              "attachment_content_type"=> "image/jpeg",
+              "attachment_file_name"=> "ror_bag.jpeg",
+              "type"=> "Spree=>=>Image",
+              "attachment_updated_at"=> "2013-12-03T19=>54=>44Z",
+              "attachment_width"=> 360,
+              "attachment_height"=> 360,
+              "alt"=> nil,
+              "viewable_type"=> "Spree=>=>Variant",
+              "viewable_id"=> 2,
+              "attachment_url"=> "/spree/products/23/product/ror_bag.jpeg?1386100484"
+            }
+          ]
+        }
+      }
       ]
     }
   end

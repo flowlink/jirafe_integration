@@ -36,6 +36,7 @@ describe JirafeEndpoint do
         post '/import_new_order', message, auth
         last_response.status.should == 200
         last_response.body.should match /order-placed event/
+        last_response.body.should match /order-accepted event/
       end
     end
   end

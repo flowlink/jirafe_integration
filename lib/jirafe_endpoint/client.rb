@@ -13,14 +13,20 @@ module Jirafe
     end
 
     def send_new_order(payload)
-      order_placed_json = Jirafe::OrderBuilder.order_placed payload
+      order_placed_hash   = Jirafe::OrderBuilder.order_placed(payload)
+      order_accepted_hash = Jirafe::OrderBuilder.order_accepted(payload)
 
       options = {
         headers: headers,
-        body: order_placed_json
+        body: {
+          :order => [
+            order_placed_hash,
+            order_accepted_hash
+          ]
+        }.to_json
       }
 
-      response = self.class.post('/order', options)
+      response = self.class.post('/batch', options)
       validate_response(response)
     end
 

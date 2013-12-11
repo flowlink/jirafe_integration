@@ -14,6 +14,8 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
       add_notification 'info', 'Order placed event sent to Jirafe',
         "An order-placed event for #{@message[:payload]['order']['number']} was sent to Jirafe."
+      add_notification 'info', 'Order accepted event sent to Jirafe',
+        "An order-accepted event for #{@message[:payload]['order']['number']} was sent to Jirafe."
     rescue => e
       code = 500
       # error_notification(e)
