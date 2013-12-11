@@ -9,10 +9,14 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
   post '/import_new_order' do
     begin
-      @client.send_new_order(@message[:payload])
+      response = @client.send_new_order(@message[:payload])
+      code = 200
+
+      add_notification 'info', 'Order placed event sent to Jirafe',
+        "An order-placed event for #{@message[:payload]['order']['number']} was sent to Jirafe."
     rescue => e
       code = 500
-      error_notification(e)
+      # error_notification(e)
     end
 
     process_result code

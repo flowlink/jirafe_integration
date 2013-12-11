@@ -35,7 +35,7 @@ describe JirafeEndpoint do
       VCR.use_cassette('import_new_order') do
         post '/import_new_order', message, auth
         last_response.status.should == 200
-        last_response.body.should match /successfully imported to Jirafe/
+        last_response.body.should match /order-placed event/
       end
     end
   end
