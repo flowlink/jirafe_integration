@@ -144,6 +144,11 @@ module Factories
 
   def self.original
     {
+      "user_id" => "123",
+      "visit_id" => "12345",
+      "visitor_id" => "12345",
+      "pageview_id" => "0",
+      "last_pageview_id" => "0",
       "credit_cards" => [
         "id" => 3,
         "month" => "11",
