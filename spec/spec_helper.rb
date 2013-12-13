@@ -5,6 +5,7 @@ Bundler.require(:default, :test)
 
 require_relative '../jirafe_endpoint.rb'
 require 'support/order_factory.rb'
+require 'support/parameters_factory.rb'
 
 Sinatra::Base.environment = 'test'
 

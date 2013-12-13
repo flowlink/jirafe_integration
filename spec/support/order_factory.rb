@@ -145,8 +145,8 @@ module Factories
   def self.original
     {
       "user_id" => "123",
-      "visit_id" => "12345",
-      "visitor_id" => "12345",
+      "visit_id" => "6590869538865152",
+      "visitor_id" => "3821811678576640",
       "pageview_id" => "0",
       "last_pageview_id" => "0",
       "credit_cards" => [
