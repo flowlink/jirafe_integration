@@ -13,12 +13,16 @@ module Jirafe
     end
 
     def send_new_order(payload)
+      cart_hash           = Jirafe::CartBuilder.build_cart(payload)
       order_placed_hash   = Jirafe::OrderBuilder.order_placed(payload)
       order_accepted_hash = Jirafe::OrderBuilder.order_accepted(payload)
 
       options = {
         headers: headers,
         body: {
+          :cart  => [
+            cart_hash
+          ],
           :order => [
             order_placed_hash,
             order_accepted_hash
@@ -33,9 +37,10 @@ module Jirafe
     private
 
     def validate_response(response)
-      if response['success']
-        true
+      if Jirafe::ErrorParser.batch_response_has_errors?(response)
+        raise JirafeEndpointError, response
       end
+      true
     end
   end
 end

@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://event.jirafe.com/v2/123/batch
+    body:
+      encoding: UTF-8
+      string: '{"cart":[{"id":null,"create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","subtotal":99.95,"total":114.95,"total_tax":5,"total_shipping":0,"total_payment_cost":114.95,"total_discounts":0,"currency":"USD","items":[{"id":"2","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Bag","code":"ROR-00012"}},{"id":"2","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Tote","code":"ROR-00013"}}],"customer":{"id":"123","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"}}],"order":[{"order_number":null,"status":"placed","order_date":"2013-07-30T19
+        =>19 =>05Z","customer":{"id":"123","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"}},{"order_number":null,"status":"accepted","order_date":"2013-07-30T19
+        =>19 =>05Z","customer":{"id":"123","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"},"create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","subtotal":99.95,"total":114.95,"total_tax":5,"total_shipping":0,"total_payment_cost":114.95,"total_discounts":0,"currency":"USD","delivery_address":{"postalcode":"20814","address1":"7735
+        Old Georgetown Rd","country":"US","state":"MD","city":"Bethesda"},"payment_address":{"postalcode":"20814","address1":"7735
+        Old Georgetown Rd","country":"US","state":"MD","city":"Bethesda"},"items":[{"id":"2","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Bag","code":"ROR-00012"}},{"id":"2","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-13T19:11:06.000Z","change_date":"2013-12-13T19:11:06.000Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Tote","code":"ROR-00013"}}]}]}'
+    headers:
+      Authorization:
+      - Bearer 123
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 13 Dec 2013 19:11:07 GMT
+      Server:
+      - nginx
+      X-Frame-Options:
+      - sameorigin
+      Content-Length:
+      - '481'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "cart": [
+            {
+              "error_type": "validation",
+              "errors": {
+                "id": "None is not of type 'string'"
+              },
+              "success": false
+            }
+          ],
+          "order": [
+            {
+              "error_type": "validation",
+              "errors": {
+                "order_number": "None is not of type 'string'"
+              },
+              "success": false
+            },
+            {
+              "error_type": "validation",
+              "errors": {
+                "order_number": "None is not of type 'string'"
+              },
+              "success": false
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 19:11:07 GMT
+recorded_with: VCR 2.8.0
