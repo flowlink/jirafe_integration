@@ -9,10 +9,8 @@ gem 'httparty'
 
 group :test do
   gem 'vcr'
-  gem 'rspec', '= 2.11.0'
+  gem 'rspec', '= 2.13.0'
   gem 'webmock', '= 1.11.0'
-  gem 'guard-rspec'
-  gem 'terminal-notifier-guard'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'rack-test'
 end
@@ -25,6 +23,8 @@ end
 group :development do
   gem 'shotgun'
   gem 'pry'
+  gem 'guard-rspec'
+  gem 'terminal-notifier-guard'
 end
 
 gem 'endpoint_base', '~> 0.1.0'
