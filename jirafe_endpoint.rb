@@ -1,4 +1,4 @@
-Dir['./lib/**/*.rb'].each { |f| require f }
+require_relative './lib/jirafe_endpoint'
 
 class JirafeEndpoint < EndpointBase::Sinatra::Base
   set :logging, true
