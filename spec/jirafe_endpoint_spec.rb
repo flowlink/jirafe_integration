@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe JirafeEndpoint do
-
-  let(:params) do
-    [
-      { 'name' => 'jirafe.site_id',      'value' => '123' },
-      { 'name' => 'jirafe.access_token', 'value' => '123' }
-    ]
-  end
-
   def app
     JirafeEndpoint
   end
@@ -18,25 +10,53 @@ describe JirafeEndpoint do
   end
 
   describe '/import_new_order' do
-    it 'imports new orders' do
-      order = Factories.order
-      original = Factories.original
+    context 'success' do
+      it 'imports new orders' do
+        order = Factories.order
+        original = Factories.original
+        params = Factories.parameters
 
-      message = {
-        message_id: '123456',
-        message: 'order:new',
-        payload: {
-          order: order,
-          original: original,
-          parameters: params
-        }
-      }.to_json
+        message = {
+          message_id: '123456',
+          message: 'order:new',
+          payload: {
+            order: order,
+            original: original,
+            parameters: params
+          }
+        }.to_json
 
-      VCR.use_cassette('import_new_order') do
-        post '/import_new_order', message, auth
-        last_response.status.should == 200
-        last_response.body.should match /order-placed event/
-        last_response.body.should match /order-accepted event/
+        VCR.use_cassette('import_new_order') do
+          post '/import_new_order', message, auth
+          last_response.status.should == 200
+          last_response.body.should match /cart event/
+          last_response.body.should match /order-placed event/
+          last_response.body.should match /order-accepted event/
+        end
+      end
+    end
+
+    context 'failure' do
+      it 'returns error details 'do
+        order = Factories.order.merge({ :number => nil })
+        original = Factories.original
+        params = Factories.parameters
+
+        message = {
+          message_id: '123456',
+          message: 'order:new',
+          payload: {
+            order: order,
+            original: original,
+            parameters: params
+          }
+        }.to_json
+
+        VCR.use_cassette('import_new_order_fail') do
+          post '/import_new_order', message, auth
+          last_response.status.should == 500
+          last_response.body.should match /None is not of type/
+        end
       end
     end
   end

@@ -12,15 +12,21 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       response = @client.send_new_order(@message[:payload])
       code = 200
 
+      add_notification 'info', 'Cart event sent to Jirafe',
+        "A cart event for #{@message[:payload]['order']['number']} was sent to Jirafe."
       add_notification 'info', 'Order placed event sent to Jirafe',
         "An order-placed event for #{@message[:payload]['order']['number']} was sent to Jirafe."
       add_notification 'info', 'Order accepted event sent to Jirafe',
         "An order-accepted event for #{@message[:payload]['order']['number']} was sent to Jirafe."
     rescue => e
       code = 500
-      # error_notification(e)
+      error_notification(e)
     end
 
     process_result code
+  end
+
+  def error_notification(error)
+    add_notification 'error', 'A Jirafe Endpoint error has occured', error.message
   end
 end
