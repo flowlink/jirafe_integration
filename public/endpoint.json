@@ -61,7 +61,7 @@
     },
     {
       "name": "import_updated_orders",
-      "path": "/import_updated_orders",
+      "path": "/import_updated_order",
       "description": "Sync updated orders to Jirafe",
       "requires": {
         "parameters": [

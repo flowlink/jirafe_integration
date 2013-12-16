@@ -12,8 +12,22 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       cart_notification(@message)
       add_notification 'info', 'Order placed event sent to Jirafe',
         "An order-placed event for #{@message[:payload]['order']['number']} was sent to Jirafe."
-      add_notification 'info', 'Order accepted event sent to Jirafe',
-        "An order-accepted event for #{@message[:payload]['order']['number']} was sent to Jirafe."
+      order_accepted_notification(@message)
+    rescue => e
+      code = 500
+      error_notification(e)
+    end
+
+    process_result code
+  end
+
+  post '/import_updated_order' do
+    begin
+      client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
+      response = client.send_updated_order(@message[:payload])
+      code = 200
+
+      order_accepted_notification(@message)
     rescue => e
       code = 500
       error_notification(e)
@@ -44,5 +58,10 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
   def cart_notification(message)
     add_notification 'info', 'Cart event sent to Jirafe',
       "A cart event for #{message[:payload]['order']['number']} was sent to Jirafe."
+  end
+
+  def order_accepted_notification(message)
+    add_notification 'info', 'Order accepted event sent to Jirafe',
+      "An order-accepted event for #{message[:payload]['order']['number']} was sent to Jirafe."
   end
 end

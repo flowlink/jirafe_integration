@@ -38,6 +38,29 @@ describe Jirafe::Client do
     end
   end
 
+  describe '#send_updated_order' do
+    before(:each) do
+      Jirafe::OrderBuilder.should_receive(:order_accepted).and_call_original
+    end
+
+    context 'success' do
+      it 'sends the order to jirafe' do
+        VCR.use_cassette('import_updated_order') do
+          subject.send_updated_order(@payload).should be_true
+        end
+      end
+    end
+
+    context 'failure' do
+      it 'raises JirafeEndpointError' do
+        @payload['order']['number'] = nil
+        VCR.use_cassette('import_updated_order_fail') do
+          expect { subject.send_updated_order(@payload) }.to raise_error(JirafeEndpointError)
+        end
+      end
+    end
+  end
+
   describe '#send_cart' do
     before(:each) do
       Jirafe::CartBuilder.should_receive(:build_cart).and_call_original

@@ -34,6 +34,18 @@ module Jirafe
       validate_batch_response(response)
     end
 
+    def send_updated_order(payload)
+      order_accepted_hash = Jirafe::OrderBuilder.order_accepted(payload)
+
+      options = {
+        headers: headers,
+        body: order_accepted_hash.to_json
+      }
+
+      response = self.class.post('/order', options)
+      validate_response(response)
+    end
+
     def send_cart(payload)
       cart_hash = Jirafe::CartBuilder.build_cart(payload)
 
