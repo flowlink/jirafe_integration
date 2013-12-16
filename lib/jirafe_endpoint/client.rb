@@ -31,15 +31,29 @@ module Jirafe
       }
 
       response = self.class.post('/batch', options)
+      validate_batch_response(response)
+    end
+
+    def send_cart(payload)
+      cart_hash = Jirafe::CartBuilder.build_cart(payload)
+
+      options = {
+        headers: headers,
+        body: cart_hash.to_json
+      }
+
+      response = self.class.post('/cart', options)
       validate_response(response)
     end
 
     private
 
+    def validate_batch_response(response)
+      raise JirafeEndpointError, response if Jirafe::ErrorParser.batch_response_has_errors?(response)
+      true
+    end
+
     def validate_response(response)
-      if Jirafe::ErrorParser.batch_response_has_errors?(response)
-        raise JirafeEndpointError, response
-      end
       true
     end
   end

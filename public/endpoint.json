@@ -7,7 +7,7 @@
   "services": [
     {
       "name": "import_carts",
-      "path": "/import_carts",
+      "path": "/import_cart",
       "description": "Sync uncompleted orders to Jirafe as carts",
       "requires": {
         "parameters": [
