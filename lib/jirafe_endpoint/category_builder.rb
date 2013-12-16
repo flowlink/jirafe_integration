@@ -3,8 +3,8 @@ module Jirafe
     class << self
       def build_category(payload)
         {
-          'id' => payload['id'].to_s,
-          'name' => payload['name'],
+          'id' => payload['taxon']['id'].to_s,
+          'name' => payload['taxon']['name'],
           'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
           'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
         }

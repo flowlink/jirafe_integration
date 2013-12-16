@@ -5,7 +5,7 @@ http_interactions:
     uri: https://event.jirafe.com/v2/123/category
     body:
       encoding: UTF-8
-      string: '{"id":"9","name":"Apache","create_date":"2013-12-16T19:11:52.000Z","change_date":"2013-12-16T19:11:52.000Z"}'
+      string: '{"id":"9","name":"Apache","create_date":"2013-12-16T19:30:13.000Z","change_date":"2013-12-16T19:30:13.000Z"}'
     headers:
       Authorization:
       - Bearer 123
@@ -19,7 +19,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 16 Dec 2013 19:11:53 GMT
+      - Mon, 16 Dec 2013 19:30:14 GMT
       Server:
       - nginx
       X-Frame-Options:
@@ -35,5 +35,5 @@ http_interactions:
           "success": true
         }
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:11:53 GMT
+  recorded_at: Mon, 16 Dec 2013 19:30:14 GMT
 recorded_with: VCR 2.8.0

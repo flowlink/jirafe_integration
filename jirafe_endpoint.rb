@@ -58,7 +58,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       code = 200
 
       add_notification 'info', 'Category event sent to Jirafe',
-        "The category #{@message[:payload]['name']} was sent to Jirafe." if response
+        "The category #{@message[:payload]['taxon']['name']} was sent to Jirafe." if response
     rescue => e
       code = 500
       error_notification(e)

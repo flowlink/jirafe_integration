@@ -59,7 +59,7 @@ module Jirafe
     end
 
     def send_category(payload, taxonomy_id)
-      return false unless taxonomy_id == payload['taxonomy_id'].to_s
+      return false unless taxonomy_id == payload['taxon']['taxonomy_id'].to_s
 
       category_hash = Jirafe::CategoryBuilder.build_category(payload)
 

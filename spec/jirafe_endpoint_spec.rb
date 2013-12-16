@@ -154,7 +154,10 @@ describe JirafeEndpoint do
         message = {
           message_id: '123456',
           message: 'taxon:persist',
-          payload: Factories.taxon.merge({ 'parameters' => Factories.parameters } )
+          payload: {
+            taxon: Factories.taxon,
+            parameters: params
+          }
         }.to_json
 
         VCR.use_cassette('import_category') do
@@ -170,7 +173,10 @@ describe JirafeEndpoint do
         message = {
           message_id: '123456',
           message: 'taxon:persist',
-          payload: Factories.taxon.merge({ 'parameters' => Factories.parameters, 'name' => nil } )
+          payload: {
+            taxon: Factories.taxon.merge({ 'name' => nil }),
+            parameters: params
+          }
         }.to_json
 
         VCR.use_cassette('import_new_category_fail') do
