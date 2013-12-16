@@ -5,5 +5,9 @@ module Jirafe
         r.last[0].has_key?('errors')
       end
     end
+
+    def self.response_has_errors?(response)
+      response.has_key?('errors')
+    end
   end
 end

@@ -54,6 +54,7 @@ module Jirafe
     end
 
     def validate_response(response)
+      raise JirafeEndpointError, response if Jirafe::ErrorParser.response_has_errors?(response)
       true
     end
   end
