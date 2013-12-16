@@ -58,6 +58,20 @@ module Jirafe
       validate_response(response)
     end
 
+    def send_category(payload, taxonomy_id)
+      return false unless taxonomy_id == payload['taxonomy_id'].to_s
+
+      category_hash = Jirafe::CategoryBuilder.build_category(payload)
+
+      options = {
+        headers: headers,
+        body: category_hash.to_json
+      }
+
+      response = self.class.post('/category', options)
+      validate_response(response)
+    end
+
     private
 
     def validate_batch_response(response)
