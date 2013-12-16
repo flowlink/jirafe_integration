@@ -3,13 +3,10 @@ require_relative './lib/jirafe_endpoint'
 class JirafeEndpoint < EndpointBase::Sinatra::Base
   set :logging, true
 
-  before do
-    @client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
-  end
-
   post '/import_new_order' do
     begin
-      response = @client.send_new_order(@message[:payload])
+      client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
+      response = client.send_new_order(@message[:payload])
       code = 200
 
       add_notification 'info', 'Cart event sent to Jirafe',

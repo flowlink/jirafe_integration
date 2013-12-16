@@ -5,7 +5,7 @@ module Jirafe
     class << self
       def build_cart(payload)
         {
-          'id' => payload['order']['number'],
+          'id' => "C#{payload['order']['number']}",
           'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
           'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
           'subtotal' => payload['order']['totals']['item'],

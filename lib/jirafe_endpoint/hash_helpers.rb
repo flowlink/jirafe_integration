@@ -27,7 +27,7 @@ module Jirafe
 
     def customer_hash(payload)
       {
-        'id' => payload['original']['user_id'],
+        'id' => payload['original']['user_id'].to_s,
         'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         'email' => payload['order']['email'],
@@ -38,10 +38,10 @@ module Jirafe
 
     def visit_hash(payload)
       {
-        'visit_id' => payload['original']['visit_id'],
-        'visitor_id' => payload['original']['visitor_id'],
-        'pageview_id' => payload['original']['pageview_id'],
-        'last_pageview_id' => payload['original']['last_pageview_id']
+        'visit_id' => payload['original']['visit_id'].to_s,
+        'visitor_id' => payload['original']['visitor_id'].to_s,
+        'pageview_id' => payload['original']['pageview_id'].to_s,
+        'last_pageview_id' => payload['original']['last_pageview_id'].to_s
       }
     end
   end
