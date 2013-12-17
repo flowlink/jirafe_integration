@@ -14,8 +14,8 @@ module Jirafe
           'price' => line_item['price'].to_f,
           'product' => {
             'id' => line_item['variant']['product_id'].to_s,
-            'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-            'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+            'create_date' => line_item['variant']['product_created_at'],
+            'change_date' => line_item['variant']['product_updated_at'],
             'is_product' => true,
             'is_sku' => true,
             'name' => line_item['variant']['name'],
