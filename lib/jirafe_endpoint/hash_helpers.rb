@@ -4,8 +4,8 @@ module Jirafe
       payload['original']['line_items'].each_with_index.map do |line_item, i|
         {
           'id' => line_item['id'].to_s,
-          'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-          'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+          'create_date' => line_item['created_at'],
+          'change_date' => line_item['updated_at'],
           'status' => 'accepted',
           'discount_price' => 0,
           'order_item_number' => i.to_s,

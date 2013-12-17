@@ -16,8 +16,8 @@ module Jirafe
       def order_accepted(payload)
         order_placed(payload).merge({
           'status' => 'accepted',
-          'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-          'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+          'create_date' => payload['order']['placed_on'],
+          'change_date' => payload['order']['updated_at'],
           'subtotal' => payload['order']['totals']['item'],
           'total' => payload['order']['totals']['order'],
           'total_tax' => payload['order']['totals']['tax'],
