@@ -64,6 +64,7 @@ describe Jirafe::Client do
   describe '#send_cart' do
     before(:each) do
       Jirafe::CartBuilder.should_receive(:build_cart).and_call_original
+      @payload['cart'] = Factories.order
     end
 
     context 'success' do

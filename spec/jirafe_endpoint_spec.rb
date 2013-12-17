@@ -110,7 +110,7 @@ describe JirafeEndpoint do
           message_id: '123456',
           message: 'cart:new',
           payload: {
-            order: order,
+            cart: order,
             original: original,
             parameters: params
           }
@@ -133,7 +133,7 @@ describe JirafeEndpoint do
           message_id: '123456',
           message: 'cart:new',
           payload: {
-            order: order,
+            cart: order,
             original: original,
             parameters: params
           }

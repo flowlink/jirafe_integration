@@ -13,7 +13,7 @@ module Jirafe
     end
 
     def send_new_order(payload)
-      cart_hash           = Jirafe::CartBuilder.build_cart(payload)
+      cart_hash           = Jirafe::CartBuilder.build_cart(payload, 'order')
       order_placed_hash   = Jirafe::OrderBuilder.order_placed(payload)
       order_accepted_hash = Jirafe::OrderBuilder.order_accepted(payload)
 
@@ -47,7 +47,7 @@ module Jirafe
     end
 
     def send_cart(payload)
-      cart_hash = Jirafe::CartBuilder.build_cart(payload)
+      cart_hash = Jirafe::CartBuilder.build_cart(payload, 'cart')
 
       options = {
         headers: headers,
