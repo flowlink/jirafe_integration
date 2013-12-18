@@ -84,4 +84,28 @@ describe Jirafe::Client do
       end
     end
   end
+
+  describe '#send_category' do
+    before(:each) do
+      Jirafe::CategoryBuilder.should_receive(:build_category).and_call_original
+      @payload['taxon'] = Factories.taxon
+    end
+
+    context 'success' do
+      it 'sends the category to jirafe' do
+        VCR.use_cassette('import_category') do
+          subject.send_category(@payload, @payload['taxon']['taxonomy_id'].to_s).should be_true
+        end
+      end
+    end
+
+    context 'failure' do
+      it 'raises JirafeEndpointError' do
+        @payload['taxon']['name'] = nil
+        VCR.use_cassette('import_new_category_fail') do
+          expect { subject.send_category(@payload, @payload['taxon']['taxonomy_id'].to_s) }.to raise_error(JirafeEndpointError)
+        end
+      end
+    end
+  end
 end
