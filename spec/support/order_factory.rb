@@ -196,7 +196,15 @@ module Factories
               "viewable_id"=> 2,
               "attachment_url"=> "/spree/products/23/product/ror_bag.jpeg?1386100484"
             }
-          ]
+          ],
+          "product"=> {
+            "taxons"=> [
+              {
+                "id"=>123,
+                "name"=>"Foobar"
+              }
+            ]
+          }
         }
       },
       {
@@ -234,7 +242,15 @@ module Factories
               "viewable_id"=> 2,
               "attachment_url"=> "/spree/products/23/product/ror_bag.jpeg?1386100484"
             }
-          ]
+          ],
+          "product"=> {
+            "taxons"=> [
+              {
+                "id"=>123,
+                "name"=>"Foobar"
+              }
+            ]
+          }
         }
       }
       ]

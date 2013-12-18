@@ -19,7 +19,8 @@ module Jirafe
             'is_product' => true,
             'is_sku' => true,
             'name' => line_item['variant']['name'],
-            'code' => line_item['variant']['sku']
+            'code' => line_item['variant']['sku'],
+            'categories' => categories_hash(line_item['variant']['product'])
           }
         }
       end
@@ -43,6 +44,15 @@ module Jirafe
         'pageview_id' => payload['original']['pageview_id'].to_s,
         'last_pageview_id' => payload['original']['last_pageview_id'].to_s
       }
+    end
+
+    def categories_hash(product_payload)
+      product_payload['taxons'].map do |taxon|
+        {
+          'id' => taxon['id'].to_s,
+          'name' => taxon['name']
+        }
+      end
     end
   end
 end
