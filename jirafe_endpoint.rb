@@ -70,7 +70,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
   end
 
   def error_notification(error)
-    add_notification 'error', 'A Jirafe Endpoint error has occured', error.message
+    add_notification 'error', 'A Jirafe Endpoint error has occured', "#{error.message} |||| #{error.backtrace}"
   end
 
   def order_accepted_notification(message)

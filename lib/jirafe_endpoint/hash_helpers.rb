@@ -31,9 +31,7 @@ module Jirafe
         'id' => payload['original']['user_id'].to_s,
         'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-        'email' => payload[payload_type]['email'],
-        'first_name' => payload[payload_type]['billing_address']['firstname'],
-        'last_name' => payload[payload_type]['billing_address']['lastname']
+        'email' => payload[payload_type]['email']
       }
     end
 
