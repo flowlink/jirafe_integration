@@ -84,6 +84,10 @@ GEM
     safe_yaml (0.9.7)
     shotgun (0.9)
       rack (>= 1.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -129,6 +133,7 @@ DEPENDENCIES
   rb-fsevent (~> 0.9.1)
   rspec (= 2.13.0)
   shotgun
+  simplecov
   sinatra
   terminal-notifier-guard
   tilt (~> 1.4.1)

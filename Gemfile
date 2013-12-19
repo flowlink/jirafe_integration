@@ -13,6 +13,7 @@ group :test do
   gem 'webmock', '= 1.11.0'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'rack-test'
+  gem 'simplecov', require: false
 end
 
 group :production do

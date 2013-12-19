@@ -3,6 +3,9 @@ require 'rubygems'
 
 Bundler.require(:default, :test)
 
+require 'simplecov'
+SimpleCov.start
+
 require_relative '../jirafe_endpoint.rb'
 require 'support/order_factory.rb'
 require 'support/parameters_factory.rb'
