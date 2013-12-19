@@ -16,7 +16,7 @@ module Jirafe
           'status' => 'accepted',
           'create_date' => payload['order']['placed_on'],
           'change_date' => payload['order']['updated_at'],
-          'subtotal' => payload['order']['totals']['item'],
+          'subtotal' => payload['order']['totals']['item'].to_f,
           'total' => payload['order']['totals']['order'].to_f,
           'total_tax' => payload['order']['totals']['tax'].to_f,
           'total_shipping' => payload['order']['totals']['shipping'].to_f,

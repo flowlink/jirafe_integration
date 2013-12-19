@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Jirafe::CartBuilder do
-  let(:cart) { Factories.order }
-  let(:original) { Factories.original }
   let(:payload) do
     {
       'cart' => Factories.order,
