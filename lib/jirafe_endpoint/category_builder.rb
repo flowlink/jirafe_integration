@@ -5,8 +5,8 @@ module Jirafe
         {
           'id' => payload['taxon']['id'].to_s,
           'name' => payload['taxon']['name'],
-          'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-          'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+          'create_date' => payload['taxon']['created_at'],
+          'change_date' => payload['taxon']['updated_at']
         }
       end
     end
