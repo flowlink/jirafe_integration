@@ -1,15 +1,13 @@
 module Jirafe
   class OrderBuilder
-    extend Jirafe::HashHelpers
-
     class << self
       def order_placed(payload)
         {
           'order_number' => payload['order']['number'],
           'status' => 'placed',
           'order_date' => payload['order']['placed_on'],
-          'customer' => customer_hash(payload, 'order'),
-          'visit' => visit_hash(payload)
+          'customer' => HashHelpers.customer_hash(payload, 'order'),
+          'visit' => HashHelpers.visit_hash(payload)
         }
       end
 
@@ -39,8 +37,8 @@ module Jirafe
             'state' => payload['order']['billing_address']['state'],
             'city' => payload['order']['billing_address']['city']
           },
-          'items' => items_hash(payload),
-          'customer' => customer_hash(payload, 'order')
+          'items' => HashHelpers.items_hash(payload),
+          'customer' => HashHelpers.customer_hash(payload, 'order')
         })
       end
     end

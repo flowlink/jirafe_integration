@@ -1,7 +1,5 @@
 module Jirafe
   class CartBuilder
-    extend Jirafe::HashHelpers
-
     class << self
       def build_cart(payload, payload_type)
         {
@@ -13,11 +11,11 @@ module Jirafe
           'total_tax' => payload['original']['tax_total'].to_f,
           'total_shipping' => payload['original']['ship_total'].to_f,
           'total_payment_cost' => payload['original']['payment_total'].to_f,
-          'total_discounts' => 0,
+          'total_discounts' => payload['original']['adjustment_total'].to_f,
           'currency' => payload[payload_type]['currency'],
-          'items' => items_hash(payload),
-          'customer' => customer_hash(payload, payload_type),
-          'visit' => visit_hash(payload)
+          'items' => HashHelpers.items_hash(payload),
+          'customer' => HashHelpers.customer_hash(payload, payload_type),
+          'visit' => HashHelpers.visit_hash(payload)
         }
       end
     end

@@ -52,5 +52,7 @@ module Jirafe
         }
       end
     end
+
+    module_function :items_hash, :customer_hash, :visit_hash, :categories_hash
   end
 end
