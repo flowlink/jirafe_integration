@@ -148,6 +148,11 @@ module Factories
       "visit_id" => "6590869538865152",
       "visitor_id" => "3821811678576640",
       "pageview_id" => "0",
+      "total"=> "9.99",
+      "adjustment_total"=> "0.00",
+      "ship_total"=> "10.0",
+      "tax_total"=> "1.0",
+      "currency"=> "USD",
       "last_pageview_id" => "0",
       "credit_cards" => [
         "id" => 3,
