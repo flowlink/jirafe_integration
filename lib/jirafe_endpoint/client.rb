@@ -46,6 +46,18 @@ module Jirafe
       validate_response(response)
     end
 
+    def send_canceled_order(payload)
+      order_canceled_hash = Jirafe::OrderBuilder.order_canceled(payload)
+
+      options = {
+        headers: headers,
+        body: order_canceled_hash.to_json
+      }
+
+      response = self.class.post('/order', options)
+      validate_response(response)
+    end
+
     def send_cart(payload)
       cart_hash = Jirafe::CartBuilder.build_cart(payload, 'cart')
 

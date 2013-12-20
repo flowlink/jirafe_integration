@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://event.jirafe.com/v2/123/order
+    body:
+      encoding: UTF-8
+      string: '{"order_number":"311174282","cancel_date":"2013-07-30T20 =>08 =>39Z","status":"cancelled"}'
+    headers:
+      Authorization:
+      - Bearer 123
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 20 Dec 2013 19:17:13 GMT
+      Server:
+      - nginx
+      X-Frame-Options:
+      - sameorigin
+      Content-Length:
+      - '21'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "success": true
+        }
+    http_version: 
+  recorded_at: Fri, 20 Dec 2013 19:17:12 GMT
+recorded_with: VCR 2.8.0

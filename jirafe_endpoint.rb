@@ -25,10 +25,16 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
   post '/import_updated_order' do
     begin
       client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
-      response = client.send_updated_order(@message[:payload])
+      if @message[:payload]['order']['status'] == 'canceled'
+        response = client.send_canceled_order(@message[:payload])
+        add_notification 'info', 'Order canceled event sent to Jirafe',
+          "An order-canceled event for #{@message[:payload]['order']['number']} was sent to Jirafe."
+      else
+        response = client.send_updated_order(@message[:payload])
+        order_accepted_notification(@message)
+      end
       code = 200
 
-      order_accepted_notification(@message)
     rescue => e
       code = 500
       error_notification(e)

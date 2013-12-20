@@ -11,6 +11,14 @@ module Jirafe
         }
       end
 
+      def order_canceled(payload)
+        {
+          'order_number' => payload['order']['number'],
+          'cancel_date' => payload['order']['updated_at'],
+          'status' => 'cancelled'
+        }
+      end
+
       def order_accepted(payload)
         order_placed(payload).merge({
           'status' => 'accepted',

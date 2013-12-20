@@ -61,6 +61,20 @@ describe Jirafe::Client do
     end
   end
 
+  describe '#send_canceled_order' do
+    before(:each) do
+      Jirafe::OrderBuilder.should_receive(:order_canceled).and_call_original
+    end
+
+    context 'success' do
+      it 'sends the order to jirafe' do
+        VCR.use_cassette('import_canceled_order') do
+          subject.send_canceled_order(@payload).should be_true
+        end
+      end
+    end
+  end
+
   describe '#send_cart' do
     before(:each) do
       Jirafe::CartBuilder.should_receive(:build_cart).and_call_original
