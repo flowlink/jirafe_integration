@@ -6,7 +6,7 @@ module Jirafe
           'order_number' => payload['order']['number'],
           'status' => 'placed',
           'order_date' => payload['order']['placed_on'],
-          'customer' => HashHelpers.customer_hash(payload, 'order'),
+          'customer' => HashHelpers.order_customer_hash(payload),
           'visit' => HashHelpers.visit_hash(payload)
         }
       end
@@ -46,7 +46,7 @@ module Jirafe
             'city' => payload['order']['billing_address']['city']
           },
           'items' => HashHelpers.items_hash(payload),
-          'customer' => HashHelpers.customer_hash(payload, 'order')
+          'customer' => HashHelpers.order_customer_hash(payload)
         })
       end
     end

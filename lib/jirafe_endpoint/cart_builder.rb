@@ -14,7 +14,7 @@ module Jirafe
           'total_discounts' => payload['original']['adjustment_total'].to_f,
           'currency' => payload[payload_type]['currency'],
           'items' => HashHelpers.items_hash(payload),
-          'customer' => HashHelpers.customer_hash(payload, payload_type),
+          'customer' => HashHelpers.cart_customer_hash(payload),
           'visit' => HashHelpers.visit_hash(payload)
         }
       end

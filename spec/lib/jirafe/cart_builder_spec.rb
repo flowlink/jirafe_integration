@@ -30,7 +30,7 @@ describe Jirafe::CartBuilder do
     end
 
     it 'returns the right customer attributes' do
-      @result['customer'].should == Jirafe::HashHelpers.customer_hash(payload, 'cart')
+      @result['customer'].should == Jirafe::HashHelpers.cart_customer_hash(payload)
     end
 
     it 'returns the right visit attributes' do

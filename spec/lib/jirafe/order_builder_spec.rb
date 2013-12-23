@@ -18,7 +18,7 @@ describe Jirafe::OrderBuilder do
     end
 
     it 'returns the right customer attributes' do
-      @result['customer'].should == Jirafe::HashHelpers.customer_hash(payload, 'order')
+      @result['customer'].should == Jirafe::HashHelpers.order_customer_hash(payload)
     end
 
     it 'returns the right visit attributes' do
@@ -34,7 +34,7 @@ describe Jirafe::OrderBuilder do
     end
 
     it 'returns the right customer attributes' do
-      @result['customer'].should == Jirafe::HashHelpers.customer_hash(payload, 'order')
+      @result['customer'].should == Jirafe::HashHelpers.order_customer_hash(payload)
     end
 
     it 'returns the right visit attributes' do

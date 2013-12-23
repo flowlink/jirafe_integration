@@ -26,12 +26,23 @@ module Jirafe
       end
     end
 
-    def customer_hash(payload, payload_type)
+    def cart_customer_hash(payload)
       {
         'id' => payload['original']['user_id'].to_s,
         'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-        'email' => payload[payload_type]['email']
+        'email' => payload['original']['email']
+      }
+    end
+
+    def order_customer_hash(payload)
+      {
+        'id' => payload['original']['user_id'].to_s,
+        'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+        'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+        'email' => payload['order']['email'],
+        'first_name' => payload['order']['billing_address']['firstname'],
+        'last_name' => payload['order']['billing_address']['lastname']
       }
     end
 
@@ -53,6 +64,6 @@ module Jirafe
       end
     end
 
-    module_function :items_hash, :customer_hash, :visit_hash, :categories_hash
+    module_function :items_hash, :cart_customer_hash, :visit_hash, :categories_hash, :order_customer_hash
   end
 end
