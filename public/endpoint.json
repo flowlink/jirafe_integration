@@ -89,7 +89,7 @@
     {
       "name": "import_categories",
       "path": "/import_category",
-      "description": "Sync taxonomies to Jirafe as product categories",
+      "description": "Sync taxons to Jirafe as product categories",
       "requires": {
         "parameters": [
           {
