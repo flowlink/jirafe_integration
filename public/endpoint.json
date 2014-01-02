@@ -85,39 +85,6 @@
           "retries_allowed": true
         }
       }
-    },
-    {
-      "name": "import_categories",
-      "path": "/import_category",
-      "description": "Sync taxons to Jirafe as product categories",
-      "requires": {
-        "parameters": [
-          {
-            "name": "site_id",
-            "description": "Jirafe Site ID",
-            "data_type": "string",
-            "optional": false
-          },
-          {
-            "name": "access_token",
-            "description": "Jirafe OAuth Access Token",
-            "data_type": "password",
-            "optional": false
-          },
-          {
-            "name": "product_category_taxonomy",
-            "description": "The ID of the parent Taxonomy whose taxons are to be synced.",
-            "data_type": "string",
-            "optional": false
-          }
-        ]
-      },
-      "recommends": {
-        "messages": ["taxon:new", "taxon:updated"],
-        "options": {
-          "retries_allowed": true
-        }
-      }
     }
   ]
 }

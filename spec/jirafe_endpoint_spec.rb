@@ -147,44 +147,4 @@ describe JirafeEndpoint do
       end
     end
   end
-
-  describe '/import_category' do
-    context 'success' do
-      it 'imports product categories' do
-        message = {
-          message_id: '123456',
-          message: 'taxon:persist',
-          payload: {
-            taxon: Factories.taxon,
-            parameters: params
-          }
-        }.to_json
-
-        VCR.use_cassette('import_category') do
-          post '/import_category', message, auth
-          last_response.status.should == 200
-          last_response.body.should match /The category/
-        end
-      end
-    end
-
-    context 'failure' do
-      it 'returns error details' do
-        message = {
-          message_id: '123456',
-          message: 'taxon:persist',
-          payload: {
-            taxon: Factories.taxon.merge({ 'name' => nil }),
-            parameters: params
-          }
-        }.to_json
-
-        VCR.use_cassette('import_new_category_fail') do
-          post '/import_category', message, auth
-          last_response.status.should == 500
-          last_response.body.should match /None is not of type/
-        end
-      end
-    end
-  end
 end

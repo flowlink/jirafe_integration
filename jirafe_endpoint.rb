@@ -59,22 +59,6 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
     process_result code
   end
 
-  post '/import_category' do
-    begin
-      client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
-      response = client.send_category(@message[:payload], @config['jirafe.product_category_taxonomy'])
-      code = 200
-
-      add_notification 'info', 'Category event sent to Jirafe',
-        "The category #{@message[:payload]['taxon']['name']} was sent to Jirafe." if response
-    rescue => e
-      code = 500
-      error_notification(e)
-    end
-
-    process_result code
-  end
-
   def error_notification(error)
     add_notification 'error', 'A Jirafe Endpoint error has occured', "#{error.message} |||| #{error.backtrace}"
   end
