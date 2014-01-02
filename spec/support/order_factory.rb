@@ -152,7 +152,10 @@ module Factories
       "adjustment_total"=> "0.00",
       "ship_total"=> "10.0",
       "tax_total"=> "1.0",
+      "email"=> "spree@example.com",
       "currency"=> "USD",
+      "created_at"=> "2013-12-23T14:42:57Z",
+      "updated_at"=> "2013-12-23T14:42:57Z",
       "last_pageview_id" => "0",
       "credit_cards" => [
         "id" => 3,
@@ -170,6 +173,8 @@ module Factories
         "id"=> 2,
         "quantity"=> 1,
         "price"=> "22.99",
+        "created_at"=> "2013-12-23T16:13:11Z",
+        "updated_at"=> "2013-12-23T16:13:11Z",
         "variant_id"=> 2,
         "variant"=> {
           "id"=> 2,
@@ -185,6 +190,8 @@ module Factories
           "permalink"=> "ruby-on-rails-bag",
           "options_text"=> "",
           "option_values"=> [],
+          "product_created_at"=> "2013-12-23T16:13:11Z",
+          "product_updated_at"=> "2013-12-23T16:13:11Z",
           "product_id"=> 2,
           "images"=> [
             {
@@ -216,6 +223,8 @@ module Factories
         "id"=> 2,
         "quantity"=> 1,
         "price"=> "22.99",
+        "created_at"=> "2013-12-23T16:13:11Z",
+        "updated_at"=> "2013-12-23T16:13:11Z",
         "variant_id"=> 2,
         "variant"=> {
           "id"=> 2,
@@ -232,6 +241,8 @@ module Factories
           "options_text"=> "",
           "option_values"=> [],
           "product_id"=> 2,
+          "product_created_at"=> "2013-12-23T16:13:11Z",
+          "product_updated_at"=> "2013-12-23T16:13:11Z",
           "images"=> [
             {
               "id"=> 23,

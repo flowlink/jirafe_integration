@@ -16,6 +16,8 @@ module Jirafe
       cart_hash           = Jirafe::CartBuilder.build_cart(payload, 'order')
       order_placed_hash   = Jirafe::OrderBuilder.order_placed(payload)
       order_accepted_hash = Jirafe::OrderBuilder.order_accepted(payload)
+      products_hash = Jirafe::HashHelpers.items_hash(payload).map { |item| item['product'] }
+      customer_hash = Jirafe::HashHelpers.order_customer_hash(payload)
 
       options = {
         headers: headers,
@@ -26,7 +28,9 @@ module Jirafe
           :order => [
             order_placed_hash,
             order_accepted_hash
-          ]
+          ],
+          :product => products_hash,
+          :customer => [customer_hash]
         }.to_json
       }
 

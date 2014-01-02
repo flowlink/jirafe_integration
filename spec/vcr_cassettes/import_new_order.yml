@@ -5,15 +5,18 @@ http_interactions:
     uri: https://event.jirafe.com/v2/123/batch
     body:
       encoding: UTF-8
-      string: '{"cart":[{"id":"311174282","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","subtotal":99.95,"total":114.95,"total_tax":5,"total_shipping":0,"total_payment_cost":114.95,"total_discounts":0,"currency":"USD","items":[{"id":"2","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","is_product":true,"is_sku":true,"name":"Ruby
-        on Rails Bag","code":"ROR-00012"}},{"id":"2","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","is_product":true,"is_sku":true,"name":"Ruby
-        on Rails Tote","code":"ROR-00013"}}],"customer":{"id":"123","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"}}],"order":[{"order_number":"311174282","status":"placed","order_date":"2013-07-30T19
-        =>19 =>05Z","customer":{"id":"123","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"}},{"order_number":"311174282","status":"accepted","order_date":"2013-07-30T19
-        =>19 =>05Z","customer":{"id":"123","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"},"create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","subtotal":99.95,"total":114.95,"total_tax":5,"total_shipping":0,"total_payment_cost":114.95,"total_discounts":0,"currency":"USD","delivery_address":{"postalcode":"20814","address1":"7735
+      string: '{"cart":[{"id":"C311174282","create_date":"2013-12-23T14:42:57Z","change_date":"2013-12-23T14:42:57Z","subtotal":0.0,"total":9.99,"total_tax":1.0,"total_shipping":10.0,"total_payment_cost":0.0,"total_discounts":0.0,"currency":"USD","items":[{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Bag","code":"ROR-00012","categories":[{"id":"123","name":"Foobar"}]}},{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Tote","code":"ROR-00013","categories":[{"id":"123","name":"Foobar"}]}}],"customer":{"id":"123","create_date":"2014-01-02T14:56:51.000Z","change_date":"2014-01-02T14:56:51.000Z","email":"spree@example.com"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"}}],"order":[{"order_number":"311174282","status":"placed","order_date":"2013-07-30T19
+        =>19 =>05Z","customer":{"id":"123","create_date":"2014-01-02T14:56:51.000Z","change_date":"2014-01-02T14:56:51.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"}},{"order_number":"311174282","status":"accepted","order_date":"2013-07-30T19
+        =>19 =>05Z","customer":{"id":"123","create_date":"2014-01-02T14:56:51.000Z","change_date":"2014-01-02T14:56:51.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"},"create_date":"2013-07-30T19
+        =>19 =>05Z","change_date":"2013-07-30T20 =>08 =>39Z","subtotal":99.95,"total":114.95,"total_tax":5.0,"total_shipping":0.0,"total_payment_cost":114.95,"total_discounts":0,"currency":"USD","delivery_address":{"postalcode":"20814","address1":"7735
         Old Georgetown Rd","country":"US","state":"MD","city":"Bethesda"},"payment_address":{"postalcode":"20814","address1":"7735
-        Old Georgetown Rd","country":"US","state":"MD","city":"Bethesda"},"items":[{"id":"2","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","is_product":true,"is_sku":true,"name":"Ruby
-        on Rails Bag","code":"ROR-00012"}},{"id":"2","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-13T19:13:35.000Z","change_date":"2013-12-13T19:13:35.000Z","is_product":true,"is_sku":true,"name":"Ruby
-        on Rails Tote","code":"ROR-00013"}}]}]}'
+        Old Georgetown Rd","country":"US","state":"MD","city":"Bethesda"},"items":[{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Bag","code":"ROR-00012","categories":[{"id":"123","name":"Foobar"}]}},{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Tote","code":"ROR-00013","categories":[{"id":"123","name":"Foobar"}]}}]}],"product":[{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Bag","code":"ROR-00012","categories":[{"id":"123","name":"Foobar"}]},{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"name":"Ruby
+        on Rails Tote","code":"ROR-00013","categories":[{"id":"123","name":"Foobar"}]}],"customer":[{"id":"123","create_date":"2014-01-02T14:56:51.000Z","change_date":"2014-01-02T14:56:51.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"}]}'
     headers:
       Authorization:
       - Bearer 123
@@ -27,13 +30,13 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Dec 2013 19:13:35 GMT
+      - Thu, 02 Jan 2014 14:56:53 GMT
       Server:
       - nginx
       X-Frame-Options:
       - sameorigin
       Content-Length:
-      - '140'
+      - '284'
       Connection:
       - keep-alive
     body:
@@ -45,7 +48,20 @@ http_interactions:
               "success": true
             }
           ],
+          "customer": [
+            {
+              "success": true
+            }
+          ],
           "order": [
+            {
+              "success": true
+            },
+            {
+              "success": true
+            }
+          ],
+          "product": [
             {
               "success": true
             },
@@ -55,5 +71,5 @@ http_interactions:
           ]
         }
     http_version: 
-  recorded_at: Fri, 13 Dec 2013 19:13:35 GMT
+  recorded_at: Thu, 02 Jan 2014 14:56:52 GMT
 recorded_with: VCR 2.8.0
