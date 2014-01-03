@@ -4,7 +4,8 @@ describe Jirafe::OrderBuilder do
   let(:payload) do
     {
       'order' => Factories.order,
-      'original' => Factories.original
+      'original' => Factories.original,
+      'brand_category_taxonomy' => '3'
     }
   end
 
@@ -39,6 +40,10 @@ describe Jirafe::OrderBuilder do
 
     it 'returns the right visit attributes' do
       @result['visit'].should == Jirafe::HashHelpers.visit_hash(payload)
+    end
+
+    it 'returns product brands' do
+      @result['items'].first['product']['brand'].should == "Apache"
     end
 
     it 'returns the right total attributes' do

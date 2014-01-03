@@ -6,25 +6,25 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
   post '/import_order' do
     begin
       client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
-      @message[:payload].merge!('brand_category_taxonomy' => @config['jirafe.brand_category_taxonomy'],
+      payload = @message[:payload].merge('brand_category_taxonomy' => @config['jirafe.brand_category_taxonomy'],
                                 'product_category_taxonomy' => @config['jirafe.product_category_taxonomy'])
       order_state = @message[:payload]['order']['status']
 
       if @message[:payload]['diff'].present? && order_state != 'canceled' # order:updated
-        response = client.send_updated_order(@message[:payload])
+        response = client.send_updated_order(payload)
         order_accepted_notification(@message)
       elsif order_state == 'canceled' # canceled order
-        response = client.send_canceled_order(@message[:payload])
+        response = client.send_canceled_order(payload)
         add_notification 'info', 'Order canceled event sent to Jirafe',
-          "An order-canceled event for #{@message[:payload]['order']['number']} was sent to Jirafe."
+          "An order-canceled event for #{payload['order']['number']} was sent to Jirafe."
       else # order:new
-        response = client.send_new_order(@message[:payload])
+        response = client.send_new_order(payload)
         code = 200
 
         add_notification 'info', 'Cart event sent to Jirafe',
-          "A cart event for #{@message[:payload]['order']['number']} was sent to Jirafe."
+          "A cart event for #{payload['order']['number']} was sent to Jirafe."
         add_notification 'info', 'Order placed event sent to Jirafe',
-          "An order-placed event for #{@message[:payload]['order']['number']} was sent to Jirafe."
+          "An order-placed event for #{payload['order']['number']} was sent to Jirafe."
         order_accepted_notification(@message)
       end
     rescue => e

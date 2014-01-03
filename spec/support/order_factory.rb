@@ -214,6 +214,11 @@ module Factories
               {
                 "id"=>123,
                 "name"=>"Foobar"
+              },
+              {
+                "id"=>456,
+                "taxonomy_id"=>3,
+                "name"=>"Apache"
               }
             ]
           }
@@ -264,6 +269,11 @@ module Factories
               {
                 "id"=>123,
                 "name"=>"Foobar"
+              },
+              {
+                "id"=>456,
+                "taxonomy_id"=>3,
+                "name"=>"Apache"
               }
             ]
           }
