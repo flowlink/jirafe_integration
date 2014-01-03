@@ -13,7 +13,7 @@ describe JirafeEndpoint do
   let(:original) { Factories.original }
   let(:params) { Factories.parameters }
 
-  describe '/import_new_order' do
+  describe '/import_order' do
     context 'success' do
       it 'imports new orders' do
         message = {
@@ -27,10 +27,29 @@ describe JirafeEndpoint do
         }.to_json
 
         VCR.use_cassette('import_new_order') do
-          post '/import_new_order', message, auth
+          post '/import_order', message, auth
           last_response.status.should == 200
           last_response.body.should match /cart event/
           last_response.body.should match /order-placed event/
+          last_response.body.should match /order-accepted event/
+        end
+      end
+
+      it 'imports updated orders' do
+        message = {
+          message_id: '123456',
+          message: 'order:updated',
+          payload: {
+            order: order,
+            original: original,
+            parameters: params,
+            diff: original
+          }
+        }.to_json
+
+        VCR.use_cassette('import_updated_order') do
+          post '/import_order', message, auth
+          last_response.status.should == 200
           last_response.body.should match /order-accepted event/
         end
       end
@@ -50,52 +69,8 @@ describe JirafeEndpoint do
           }
         }.to_json
 
-        VCR.use_cassette('import_new_order_fail') do
-          post '/import_new_order', message, auth
-          last_response.status.should == 500
-          last_response.body.should match /None is not of type/
-        end
-      end
-    end
-  end
-
-  describe '/import_updated_order' do
-    context 'success' do
-      it 'imports updated orders' do
-        message = {
-          message_id: '123456',
-          message: 'order:updated',
-          payload: {
-            order: order,
-            original: original,
-            parameters: params
-          }
-        }.to_json
-
-        VCR.use_cassette('import_updated_order') do
-          post '/import_updated_order', message, auth
-          last_response.status.should == 200
-          last_response.body.should match /order-accepted event/
-        end
-      end
-    end
-
-    context 'failure' do
-      it 'returns error details 'do
-        order = Factories.order.merge({ :number => nil })
-
-        message = {
-          message_id: '123456',
-          message: 'order:updated',
-          payload: {
-            order: order,
-            original: original,
-            parameters: params
-          }
-        }.to_json
-
-        VCR.use_cassette('import_updated_order_fail') do
-          post '/import_updated_order', message, auth
+        VCR.use_cassette('import_order_fail') do
+          post '/import_order', message, auth
           last_response.status.should == 500
           last_response.body.should match /None is not of type/
         end
