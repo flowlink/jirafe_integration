@@ -49,11 +49,23 @@
             "description": "Jirafe OAuth Access Token",
             "data_type": "password",
             "optional": false
+          },
+          {
+            "name": "product_category_taxonomy",
+            "description": "The ID of the parent Taxonomy whose taxons are to be synced.",
+            "data_type": "string",
+            "optional": false
+          },
+          {
+            "name": "brand_category_taxonomy",
+            "description": "The ID of the Taxonomy that contains your Brand taxons",
+            "data_type": "string",
+            "optional": false
           }
         ]
       },
       "recommends": {
-        "messages": ["order:updated"],
+        "messages": ["order:new", "order:updated"],
         "options": {
           "retries_allowed": true
         }
