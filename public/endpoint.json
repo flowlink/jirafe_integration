@@ -51,6 +51,12 @@
             "optional": false
           },
           {
+            "name": "store_url",
+            "description": "Your store's URL (ex http://www.mystore.com)",
+            "data_type": "string",
+            "optional": false
+          },
+          {
             "name": "product_category_taxonomy",
             "description": "The ID of the parent Taxonomy whose taxons are to be synced.",
             "data_type": "string",

@@ -21,7 +21,8 @@ module Jirafe
             'brand' => determine_product_brand(line_item['variant']['product'], payload['brand_category_taxonomy']),
             'name' => line_item['variant']['name'],
             'code' => line_item['variant']['sku'],
-            'categories' => categories_hash(line_item['variant']['product'])
+            'categories' => categories_hash(line_item['variant']['product']),
+            'images' => determine_product_images(line_item['variant']['images'], payload['store_url'])
           }
         }
       end
@@ -67,9 +68,25 @@ module Jirafe
 
     def determine_product_brand(product_payload, brand_taxonomy_id)
       result = product_payload['taxons'].detect { |taxon| taxon['taxonomy_id'] == brand_taxonomy_id.to_i }
-      result['name'] if result
+      result ? result['name'] : ''
     end
 
-    module_function :items_hash, :cart_customer_hash, :visit_hash, :categories_hash, :order_customer_hash, :determine_product_brand
+    def determine_product_images(images_payload, store_url)
+      return unless store_url
+
+      result = []
+      images_payload.each do |image|
+        if image['attachment_url'].start_with?('http')
+          url = image['attachment_url']
+        else
+          url = "#{store_url.sub(/(\/)+$/, '')}#{image['attachment_url']}"
+        end
+        result << { 'url' => url }
+      end
+
+      result
+    end
+
+    module_function :items_hash, :cart_customer_hash, :visit_hash, :categories_hash, :order_customer_hash, :determine_product_brand, :determine_product_images
   end
 end

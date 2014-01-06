@@ -7,7 +7,8 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
     begin
       client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
       payload = @message[:payload].merge('brand_category_taxonomy' => @config['jirafe.brand_category_taxonomy'],
-                                'product_category_taxonomy' => @config['jirafe.product_category_taxonomy'])
+                                         'product_category_taxonomy' => @config['jirafe.product_category_taxonomy'],
+                                         'store_url' => @config['jirafe.store_url'])
       order_state = @message[:payload]['order']['status']
 
       if @message[:payload]['diff'].present? && order_state != 'canceled' # order:updated

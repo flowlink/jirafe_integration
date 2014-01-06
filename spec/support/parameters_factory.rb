@@ -4,7 +4,8 @@ module Factories
       { 'name' => 'jirafe.site_id',                   'value' => '123' },
       { 'name' => 'jirafe.access_token',              'value' => '123' },
       { 'name' => 'jirafe.product_category_taxonomy', 'value' => '2' },
-      { 'name' => 'jirafe.brand_category_taxonomy', 'value' => '2' }
+      { 'name' => 'jirafe.brand_category_taxonomy',   'value' => '2' },
+      { 'name' => 'jirafe.store_url',                 'value' => 'http://mystore.dev' }
     ]
   end
 end
