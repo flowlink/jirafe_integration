@@ -52,7 +52,7 @@
           },
           {
             "name": "store_url",
-            "description": "Your store's URL (ex http://www.mystore.com)",
+            "description": "URL where images are stored (ex http://www.mystore.com)",
             "data_type": "string",
             "optional": false
           },
