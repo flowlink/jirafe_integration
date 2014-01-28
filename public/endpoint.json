@@ -60,13 +60,13 @@
             "name": "product_category_taxonomy",
             "description": "The ID of the parent Taxonomy whose taxons are to be synced.",
             "data_type": "string",
-            "optional": false
+            "optional": true
           },
           {
             "name": "brand_category_taxonomy",
             "description": "The ID of the Taxonomy that contains your Brand taxons",
             "data_type": "string",
-            "optional": false
+            "optional": true
           }
         ]
       },

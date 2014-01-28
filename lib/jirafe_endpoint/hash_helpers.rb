@@ -67,6 +67,7 @@ module Jirafe
     end
 
     def determine_product_brand(product_payload, brand_taxonomy_id)
+      return '' unless brand_taxonomy_id
       result = product_payload['taxons'].detect { |taxon| taxon['taxonomy_id'] == brand_taxonomy_id.to_i }
       result ? result['name'] : ''
     end
