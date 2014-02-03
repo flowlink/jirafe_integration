@@ -10,6 +10,7 @@ require_relative '../jirafe_endpoint.rb'
 require 'support/order_factory.rb'
 require 'support/parameters_factory.rb'
 require 'support/taxon_factory.rb'
+require 'support/product_factory.rb'
 
 Sinatra::Base.environment = 'test'
 
