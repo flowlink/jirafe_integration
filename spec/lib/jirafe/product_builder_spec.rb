@@ -9,7 +9,7 @@ describe Jirafe::ProductBuilder do
     before(:each) { @result = subject.class.build_product(payload) }
 
     it 'returns the right id and sku attributes' do
-      @result['id'].should == payload['id']
+      @result['id'].should == payload['id'].to_s
       @result['code'].should == payload['sku']
     end
 

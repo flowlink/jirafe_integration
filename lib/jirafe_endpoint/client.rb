@@ -74,6 +74,18 @@ module Jirafe
       validate_response(response)
     end
 
+    def send_product(payload)
+      product_hash = Jirafe::ProductBuilder.build_product(payload)
+
+      options = {
+        headers: headers,
+        body: product_hash.to_json
+      }
+
+      response = self.class.post('/product', options)
+      validate_response(response)
+    end
+
     private
 
     def validate_batch_response(response)

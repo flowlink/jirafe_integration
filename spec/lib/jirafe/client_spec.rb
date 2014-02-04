@@ -98,4 +98,19 @@ describe Jirafe::Client do
       end
     end
   end
+
+  describe '#send_product' do
+    before(:each) do
+      Jirafe::ProductBuilder.should_receive(:build_product).and_call_original
+      @payload = Factories.product
+    end
+
+    context 'success' do
+      it 'sends the product to jirafe' do
+        VCR.use_cassette('import_product') do
+          subject.send_product(@payload).should be_true
+        end
+      end
+    end
+  end
 end
