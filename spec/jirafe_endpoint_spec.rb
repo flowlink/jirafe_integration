@@ -122,4 +122,41 @@ describe JirafeEndpoint do
       end
     end
   end
+
+  describe '/import_product' do
+    context 'success' do
+      it 'imports a product' do
+        message = {
+          message_id: '123456',
+          message: 'product:persist',
+          payload: Factories.product.merge(parameters: params)
+        }.to_json
+
+        VCR.use_cassette('import_new_product') do
+          post '/import_product', message, auth
+          last_response.status.should == 200
+          last_response.body.should match /Product sent/
+        end
+      end
+    end
+
+    context 'failure' do
+      product = Factories.order
+      product['id'] = nil
+
+      it 'returns error details' do
+        message = {
+          message_id: '123456',
+          message: 'product:persist',
+          payload: product.merge(parameters: params)
+        }.to_json
+
+        VCR.use_cassette('import_new_product_fail') do
+          post '/import_product', message, auth
+          last_response.status.should == 500
+          last_response.body.should match /None is not of type/
+        end
+      end
+    end
+  end
 end
