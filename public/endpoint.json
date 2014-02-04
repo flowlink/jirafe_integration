@@ -76,6 +76,33 @@
           "retries_allowed": true
         }
       }
+    },
+    {
+      "name": "import_products",
+      "path": "/import_product",
+      "description": "Sync products with Jirafe",
+      "requires": {
+        "parameters": [
+          {
+            "name": "site_id",
+            "description": "Jirafe Site ID",
+            "data_type": "string",
+            "optional": false
+          },
+          {
+            "name": "access_token",
+            "description": "Jirafe OAuth Access Token",
+            "data_type": "password",
+            "optional": false
+          }
+        ]
+      },
+      "recommends": {
+        "messages": ["product:persist"],
+        "options": {
+          "retries_allowed": true
+        }
+      }
     }
   ]
 }
