@@ -73,7 +73,7 @@ module Jirafe
     end
 
     def determine_product_images(images_payload, store_url)
-      return unless store_url
+      return [] unless store_url
 
       result = []
       images_payload.each do |image|

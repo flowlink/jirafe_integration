@@ -5,9 +5,9 @@ http_interactions:
     uri: https://event.jirafe.com/v2/123/cart
     body:
       encoding: UTF-8
-      string: '{"id":"C311174282","create_date":"2013-12-16T14:45:29.000Z","change_date":"2013-12-16T14:45:29.000Z","subtotal":99.95,"total":114.95,"total_tax":5,"total_shipping":0,"total_payment_cost":114.95,"total_discounts":0,"currency":"USD","items":[{"id":"2","create_date":"2013-12-16T14:45:29.000Z","change_date":"2013-12-16T14:45:29.000Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-16T14:45:29.000Z","change_date":"2013-12-16T14:45:29.000Z","is_product":true,"is_sku":true,"name":"Ruby
-        on Rails Bag","code":"ROR-00012"}},{"id":"2","create_date":"2013-12-16T14:45:29.000Z","change_date":"2013-12-16T14:45:29.000Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-16T14:45:29.000Z","change_date":"2013-12-16T14:45:29.000Z","is_product":true,"is_sku":true,"name":"Ruby
-        on Rails Tote","code":"ROR-00013"}}],"customer":{"id":"123","create_date":"2013-12-16T14:45:29.000Z","change_date":"2013-12-16T14:45:29.000Z","email":"spree@example.com","first_name":"Brian","last_name":"Quinn"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"}}'
+      string: '{"id":"C311174282","create_date":"2013-12-23T14:42:57Z","change_date":"2013-12-23T14:42:57Z","subtotal":0.0,"total":9.99,"total_tax":1.0,"total_shipping":10.0,"total_payment_cost":0.0,"total_discounts":0.0,"currency":"USD","items":[{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"brand":"","name":"Ruby
+        on Rails Bag","code":"ROR-00012","categories":[{"id":"123","name":"Foobar"},{"id":"456","name":"Apache"}],"images":[]}},{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"brand":"","name":"Ruby
+        on Rails Tote","code":"ROR-00013","categories":[{"id":"123","name":"Foobar"},{"id":"456","name":"Apache"}],"images":[]}}],"customer":{"id":"123","create_date":"2014-02-06T13:26:30.000Z","change_date":"2014-02-06T13:26:30.000Z","email":"spree@example.com"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":"0"}}'
     headers:
       Authorization:
       - Bearer 123
@@ -18,14 +18,12 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Server:
+      - nginx/1.1.19
+      Date:
+      - Thu, 06 Feb 2014 13:26:29 GMT
       Content-Type:
       - application/json
-      Date:
-      - Mon, 16 Dec 2013 14:45:27 GMT
-      Server:
-      - nginx
-      X-Frame-Options:
-      - sameorigin
       Content-Length:
       - '21'
       Connection:
@@ -37,5 +35,5 @@ http_interactions:
           "success": true
         }
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 14:45:30 GMT
+  recorded_at: Thu, 06 Feb 2014 13:26:30 GMT
 recorded_with: VCR 2.8.0

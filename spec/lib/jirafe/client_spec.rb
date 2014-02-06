@@ -91,7 +91,7 @@ describe Jirafe::Client do
 
     context 'failure' do
       it 'raises JirafeEndpointError' do
-        @payload['order']['totals']['order'] = nil
+        @payload['original']['created_at'] = nil
         VCR.use_cassette('import_new_cart_fail') do
           expect { subject.send_cart(@payload) }.to raise_error(JirafeEndpointError)
         end
