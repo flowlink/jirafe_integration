@@ -11,7 +11,7 @@ module Jirafe
           'total_tax' => payload['original']['tax_total'].to_f,
           'total_shipping' => payload['original']['ship_total'].to_f,
           'total_payment_cost' => payload['original']['payment_total'].to_f,
-          'total_discounts' => payload['original']['adjustment_total'].to_f,
+          'total_discounts' => -payload['original']['adjustment_total'].to_f,
           'currency' => payload[payload_type]['currency'],
           'items' => HashHelpers.items_hash(payload),
           'customer' => HashHelpers.cart_customer_hash(payload),
