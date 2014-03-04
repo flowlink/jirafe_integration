@@ -1,11 +1,11 @@
 module Factories
   def self.parameters
-    [
-      { 'name' => 'jirafe.site_id',                   'value' => '123' },
-      { 'name' => 'jirafe.access_token',              'value' => '123' },
-      { 'name' => 'jirafe.product_category_taxonomy', 'value' => '2' },
-      { 'name' => 'jirafe.brand_category_taxonomy',   'value' => '2' },
-      { 'name' => 'jirafe.store_url',                 'value' => 'http://mystore.dev' }
-    ]
+    {
+      'jirafe.site_id'                   => '123',
+      'jirafe.access_token'              => '123',
+      'jirafe.product_category_taxonomy' => '2',
+      'jirafe.brand_category_taxonomy'   => '2',
+      'jirafe.store_url'                 => 'http://mystore.dev'
+    }
   end
 end

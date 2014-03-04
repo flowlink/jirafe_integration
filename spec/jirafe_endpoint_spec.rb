@@ -123,19 +123,19 @@ describe JirafeEndpoint do
     end
   end
 
-  describe '/import_product' do
+  describe '/add_product' do
     context 'success' do
       it 'imports a product' do
         message = {
-          message_id: '123456',
-          message: 'product:persist',
-          payload: Factories.product.merge(parameters: params)
+          request_id: '123456',
+          parameters: params,
+          product: Factories.product
         }.to_json
 
         VCR.use_cassette('import_new_product') do
-          post '/import_product', message, auth
+          post '/add_product', message, auth
           last_response.status.should == 200
-          last_response.body.should match /Product sent/
+          last_response.body.should match /was sent to Jirafe/
         end
       end
     end
@@ -147,12 +147,12 @@ describe JirafeEndpoint do
       it 'returns error details' do
         message = {
           message_id: '123456',
-          message: 'product:persist',
-          payload: product.merge(parameters: params)
+          parameters: params,
+          product: product
         }.to_json
 
         VCR.use_cassette('import_new_product_fail') do
-          post '/import_product', message, auth
+          post '/add_product', message, auth
           last_response.status.should == 500
           last_response.body.should match /None is not of type/
         end

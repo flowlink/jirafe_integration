@@ -52,14 +52,13 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
     process_result code
   end
 
-  post '/import_product' do
+  post '/add_product' do
     begin
-      client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
-      response = client.send_product(@message[:payload])
+      client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
+      response = client.send_product(@payload[:product])
       code = 200
 
-      add_notification 'info', 'Product sent to Jirafe',
-        "The product #{@message[:payload]['sku']} was sent to Jirafe."
+      set_summary "The product #{@payload[:product]['sku']} was sent to Jirafe."
     rescue => e
       code = 500
       error_notification(e)
@@ -69,7 +68,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
   end
 
   def error_notification(error)
-    add_notification 'error', 'A Jirafe Endpoint error has occured', "#{error.message} |||| #{error.backtrace}"
+    set_summary "A Jirafe Endpoint error has occured: #{error.message} BACKTRACE: #{error.backtrace}"
   end
 
   def order_accepted_notification(message)
