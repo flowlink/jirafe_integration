@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/spree/endpoint_base.git
+  revision: c81494e19fd8a172f121813649e158bc5c4f8442
+  specs:
+    endpoint_base (0.1.1)
+      activesupport
+      jbuilder
+      json
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -20,10 +29,6 @@ GEM
       safe_yaml (~> 0.9.0)
     diff-lcs (1.2.5)
     dotenv (0.9.0)
-    endpoint_base (0.1.0)
-      activesupport
-      jbuilder
-      json
     ffi (1.9.3)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -124,7 +129,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
-  endpoint_base (~> 0.1.0)
+  endpoint_base!
   foreman
   guard-rspec
   httparty
