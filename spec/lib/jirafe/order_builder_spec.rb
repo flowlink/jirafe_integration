@@ -2,20 +2,16 @@ require 'spec_helper'
 
 describe Jirafe::OrderBuilder do
   let(:payload) do
-    {
-      'order' => Factories.order,
-      'original' => Factories.original,
-      'brand_category_taxonomy' => '3'
-    }
+    Factories.order.merge!('jirafe.brand_category_taxonomy' => '3')
   end
 
   describe '.order_placed' do
     before(:each) { @result = subject.class.order_placed(payload) }
 
     it 'returns the right attributes' do
-      @result['order_number'].should == payload['order']['number']
+      @result['order_number'].should == payload['number']
       @result['status'].should == 'placed'
-      @result['order_date'].should == payload['order']['placed_on']
+      @result['order_date'].should == payload['placed_on']
     end
 
     it 'returns the right customer attributes' do
@@ -47,11 +43,11 @@ describe Jirafe::OrderBuilder do
     end
 
     it 'returns the right total attributes' do
-      @result['subtotal'].should == payload['order']['totals']['item'].to_f
-      @result['total'].should == payload['order']['totals']['order'].to_f
-      @result['total_tax'].should == payload['order']['totals']['tax'].to_f
-      @result['total_shipping'].should == payload['order']['totals']['shipping'].to_f
-      @result['total_payment_cost'].should == payload['order']['totals']['payment'].to_f
+      @result['subtotal'].should == payload['totals']['item'].to_f
+      @result['total'].should == payload['totals']['order'].to_f
+      @result['total_tax'].should == payload['totals']['tax'].to_f
+      @result['total_shipping'].should == payload['totals']['shipping'].to_f
+      @result['total_payment_cost'].should == payload['totals']['payment'].to_f
     end
   end
 end

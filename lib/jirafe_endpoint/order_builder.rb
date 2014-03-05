@@ -3,9 +3,9 @@ module Jirafe
     class << self
       def order_placed(payload)
         {
-          'order_number' => payload['order']['number'],
+          'order_number' => payload['number'],
           'status' => 'placed',
-          'order_date' => payload['order']['placed_on'],
+          'order_date' => payload['placed_on'],
           'customer' => HashHelpers.order_customer_hash(payload),
           'visit' => HashHelpers.visit_hash(payload)
         }
@@ -13,8 +13,8 @@ module Jirafe
 
       def order_canceled(payload)
         {
-          'order_number' => payload['order']['number'],
-          'cancel_date' => payload['order']['updated_at'],
+          'order_number' => payload['number'],
+          'cancel_date' => payload['updated_at'],
           'status' => 'cancelled'
         }
       end
@@ -22,28 +22,28 @@ module Jirafe
       def order_accepted(payload)
         order_placed(payload).merge({
           'status' => 'accepted',
-          'create_date' => payload['order']['placed_on'],
-          'change_date' => payload['order']['updated_at'],
-          'subtotal' => payload['order']['totals']['item'].to_f,
-          'total' => payload['order']['totals']['order'].to_f,
-          'total_tax' => payload['order']['totals']['tax'].to_f,
-          'total_shipping' => payload['order']['totals']['shipping'].to_f,
-          'total_payment_cost' => payload['order']['totals']['payment'].to_f,
+          'create_date' => payload['placed_on'],
+          'change_date' => payload['updated_at'],
+          'subtotal' => payload['totals']['item'].to_f,
+          'total' => payload['totals']['order'].to_f,
+          'total_tax' => payload['totals']['tax'].to_f,
+          'total_shipping' => payload['totals']['shipping'].to_f,
+          'total_payment_cost' => payload['totals']['payment'].to_f,
           'total_discounts' => 0,
-          'currency' => payload['order']['currency'],
+          'currency' => payload['currency'],
           'delivery_address' => {
-            'postalcode' => payload['order']['shipping_address']['zipcode'],
-            'address1' => payload['order']['shipping_address']['address1'],
-            'country' => payload['order']['shipping_address']['country'],
-            'state' => payload['order']['shipping_address']['state'],
-            'city' => payload['order']['shipping_address']['city']
+            'postalcode' => payload['shipping_address']['zipcode'],
+            'address1' => payload['shipping_address']['address1'],
+            'country' => payload['shipping_address']['country'],
+            'state' => payload['shipping_address']['state'],
+            'city' => payload['shipping_address']['city']
           },
           'payment_address' => {
-            'postalcode' => payload['order']['billing_address']['zipcode'],
-            'address1' => payload['order']['billing_address']['address1'],
-            'country' => payload['order']['billing_address']['country'],
-            'state' => payload['order']['billing_address']['state'],
-            'city' => payload['order']['billing_address']['city']
+            'postalcode' => payload['billing_address']['zipcode'],
+            'address1' => payload['billing_address']['address1'],
+            'country' => payload['billing_address']['country'],
+            'state' => payload['billing_address']['state'],
+            'city' => payload['billing_address']['city']
           },
           'items' => HashHelpers.items_hash(payload),
           'customer' => HashHelpers.order_customer_hash(payload)

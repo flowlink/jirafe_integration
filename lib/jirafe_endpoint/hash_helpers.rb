@@ -39,12 +39,12 @@ module Jirafe
 
     def order_customer_hash(payload)
       {
-        'id' => payload['original']['user_id'].to_s,
+        'id' => payload['user_id'].to_s,
         'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-        'email' => payload['order']['email'],
-        'first_name' => payload['order']['billing_address']['firstname'],
-        'last_name' => payload['order']['billing_address']['lastname']
+        'email' => payload['email'],
+        'first_name' => payload['billing_address']['firstname'],
+        'last_name' => payload['billing_address']['lastname']
       }
     end
 
