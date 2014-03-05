@@ -7,18 +7,32 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
     begin
       client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
       @payload[:order].merge!(@payload['parameters'])
-      order_state = @payload[:order][:status]
 
-      if @payload[:diff].present? && order_state != 'canceled' # order:updated
-        response = client.send_updated_order(@payload[:order])
-      elsif order_state == 'canceled' # canceled order
-        response = client.send_canceled_order(@payload[:order])
-      else # order:new
-        response = client.send_new_order(@payload[:order])
-      end
+      response = client.send_new_order(@payload[:order])
 
       code = 200
       set_summary "The order #{@payload[:order][:number]} was sent to Jirafe."
+    rescue => e
+      code = 500
+      error_notification(e)
+    end
+
+    process_result code
+  end
+
+  post '/update_order' do
+    begin
+      client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
+      @payload[:order].merge!(@payload['parameters'])
+      order_state = @payload[:order][:status]
+
+      if @payload[:order][:status] != 'canceled'
+        response = client.send_updated_order(@payload[:order])
+        set_summary "The order #{@payload[:order][:number]} was updated on Jirafe."
+      else
+        response = client.send_canceled_order(@payload[:order])
+        set_summary "The order #{@payload[:order][:number]} was canceled on Jirafe."
+      end
     rescue => e
       code = 500
       error_notification(e)

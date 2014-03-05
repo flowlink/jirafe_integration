@@ -28,21 +28,6 @@ describe JirafeEndpoint do
           last_response.body.should match /was sent to Jirafe/
         end
       end
-
-      it 'imports updated orders' do
-        message = {
-          request_id: '123456',
-          order: order,
-          diff: original,
-          parameters: params
-        }.to_json
-
-        VCR.use_cassette('import_updated_order') do
-          post '/add_order', message, auth
-          last_response.status.should == 200
-          last_response.body.should match /was sent to Jirafe/
-        end
-      end
     end
 
     context 'failure' do
@@ -59,6 +44,46 @@ describe JirafeEndpoint do
           post '/add_order', message, auth
           last_response.status.should == 500
           last_response.body.should match /None is not of type/
+        end
+      end
+    end
+  end
+
+  describe '/update_order' do
+    context 'success' do
+      it 'imports updated orders' do
+        Jirafe::Client.any_instance.should_receive(:send_updated_order)
+
+        message = {
+          request_id: '123456',
+          order: order,
+          diff: original,
+          parameters: params
+        }.to_json
+
+        VCR.use_cassette('import_updated_order') do
+          post '/update_order', message, auth
+          last_response.status.should == 200
+          last_response.body.should match /was updated on Jirafe/
+        end
+      end
+
+      it 'imports canceled orders' do
+        Jirafe::Client.any_instance.should_receive(:send_canceled_order)
+
+        order = Factories.order.merge(status: 'canceled')
+
+        message = {
+          request_id: '123456',
+          order: order,
+          diff: original,
+          parameters: params
+        }.to_json
+
+        VCR.use_cassette('import_canceled_order') do
+          post '/update_order', message, auth
+          last_response.status.should == 200
+          last_response.body.should match /was canceled on Jirafe/
         end
       end
     end
