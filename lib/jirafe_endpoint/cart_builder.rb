@@ -1,7 +1,7 @@
 module Jirafe
   class CartBuilder
     class << self
-      def build_cart(payload, payload_type)
+      def build_cart(payload)
         {
           'id' => payload['number'],
           'create_date' => payload['placed_on'],

@@ -13,44 +13,34 @@ describe JirafeEndpoint do
   let(:original) { Factories.original }
   let(:params) { Factories.parameters }
 
-  describe '/import_order' do
+  describe '/add_order' do
     context 'success' do
       it 'imports new orders' do
         message = {
-          message_id: '123456',
-          message: 'order:new',
-          payload: {
-            order: order,
-            original: original,
-            parameters: params
-          }
+          request_id: '123456',
+          order: order,
+          parameters: params
         }.to_json
 
         VCR.use_cassette('import_new_order') do
-          post '/import_order', message, auth
+          post '/add_order', message, auth
           last_response.status.should == 200
-          last_response.body.should match /cart event/
-          last_response.body.should match /order-placed event/
-          last_response.body.should match /order-accepted event/
+          last_response.body.should match /was sent to Jirafe/
         end
       end
 
       it 'imports updated orders' do
         message = {
-          message_id: '123456',
-          message: 'order:updated',
-          payload: {
-            order: order,
-            original: original,
-            parameters: params,
-            diff: original
-          }
+          request_id: '123456',
+          order: order,
+          diff: original,
+          parameters: params
         }.to_json
 
         VCR.use_cassette('import_updated_order') do
-          post '/import_order', message, auth
+          post '/add_order', message, auth
           last_response.status.should == 200
-          last_response.body.should match /order-accepted event/
+          last_response.body.should match /was sent to Jirafe/
         end
       end
     end
@@ -60,17 +50,13 @@ describe JirafeEndpoint do
         order = Factories.order.merge({ :number => nil })
 
         message = {
-          message_id: '123456',
-          message: 'order:new',
-          payload: {
-            order: order,
-            original: original,
-            parameters: params
-          }
+          request_id: '123456',
+          order: order,
+          parameters: params
         }.to_json
 
         VCR.use_cassette('import_order_fail') do
-          post '/import_order', message, auth
+          post '/add_order', message, auth
           last_response.status.should == 500
           last_response.body.should match /None is not of type/
         end

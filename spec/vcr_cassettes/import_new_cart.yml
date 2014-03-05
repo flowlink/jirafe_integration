@@ -6,9 +6,9 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"id":"311174282","create_date":"2013-07-30T19 =>19 =>05Z","change_date":"2013-07-30T20
-        =>08 =>39Z","subtotal":0.0,"total":0.0,"total_tax":0.0,"total_shipping":0.0,"total_payment_cost":0.0,"total_discounts":0,"currency":"USD","items":[{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"brand":"","name":"Ruby
+        =>08 =>39Z","subtotal":0.0,"total":114.95,"total_tax":5.0,"total_shipping":0.0,"total_payment_cost":114.95,"total_discounts":0,"currency":"USD","items":[{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"0","cart_item_number":"0","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"brand":"","name":"Ruby
         on Rails Bag","code":"ROR-00012","categories":[{"id":"123","name":"Foobar"},{"id":"456","name":"Apache"}],"images":[{"url":"http://mystore.dev/spree/products/23/product/ror_bag.jpeg?1386100484"}]}},{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","status":"accepted","discount_price":0,"order_item_number":"1","cart_item_number":"1","quantity":1,"price":22.99,"product":{"id":"2","create_date":"2013-12-23T16:13:11Z","change_date":"2013-12-23T16:13:11Z","is_product":true,"is_sku":true,"brand":"","name":"Ruby
-        on Rails Tote","code":"ROR-00013","categories":[{"id":"123","name":"Foobar"},{"id":"456","name":"Apache"}],"images":[{"url":"http://mystore.dev/spree/products/23/product/ror_bag.jpeg?1386100484"}]}}],"customer":{"id":"","create_date":"2014-03-05T15:24:47.000Z","change_date":"2014-03-05T15:24:47.000Z","email":"spree@example.com"},"visit":{"visit_id":"","visitor_id":"","pageview_id":"","last_pageview_id":""}}'
+        on Rails Tote","code":"ROR-00013","categories":[{"id":"123","name":"Foobar"},{"id":"456","name":"Apache"}],"images":[{"url":"http://mystore.dev/spree/products/23/product/ror_bag.jpeg?1386100484"}]}}],"customer":{"id":"123","create_date":"2014-03-05T16:32:01.000Z","change_date":"2014-03-05T16:32:01.000Z","email":"spree@example.com"},"visit":{"visit_id":"6590869538865152","visitor_id":"3821811678576640","pageview_id":"0","last_pageview_id":""}}'
     headers:
       Authorization:
       - Bearer 123
@@ -22,7 +22,7 @@ http_interactions:
       Server:
       - nginx/1.1.19
       Date:
-      - Wed, 05 Mar 2014 15:24:49 GMT
+      - Wed, 05 Mar 2014 16:32:05 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -36,5 +36,5 @@ http_interactions:
           "success": true
         }
     http_version: 
-  recorded_at: Wed, 05 Mar 2014 15:24:47 GMT
+  recorded_at: Wed, 05 Mar 2014 16:32:02 GMT
 recorded_with: VCR 2.8.0

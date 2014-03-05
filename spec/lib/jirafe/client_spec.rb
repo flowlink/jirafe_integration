@@ -6,11 +6,7 @@ describe Jirafe::Client do
   end
 
   before(:each) do
-    @payload ={
-      'order' => Factories.order,
-      'original' => Factories.original,
-      'parameters' => Factories.parameters
-    }
+    @payload = Factories.order.merge(Factories.parameters)
   end
 
   describe '#send_new_order' do
@@ -30,7 +26,7 @@ describe Jirafe::Client do
 
     context 'failure' do
       it 'raises JirafeEndpointError' do
-        @payload['order']['number'] = nil
+        @payload['number'] = nil
         VCR.use_cassette('import_new_order_fail') do
           expect { subject.send_new_order(@payload) }.to raise_error(JirafeEndpointError)
         end
@@ -53,7 +49,7 @@ describe Jirafe::Client do
 
     context 'failure' do
       it 'raises JirafeEndpointError' do
-        @payload['order']['number'] = nil
+        @payload['number'] = nil
         VCR.use_cassette('import_updated_order_fail') do
           expect { subject.send_updated_order(@payload) }.to raise_error(JirafeEndpointError)
         end

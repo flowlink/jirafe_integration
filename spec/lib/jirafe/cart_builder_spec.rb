@@ -6,7 +6,7 @@ describe Jirafe::CartBuilder do
   end
 
   describe '.build_cart' do
-    before(:each) { @result = subject.class.build_cart(payload, 'cart') }
+    before(:each) { @result = subject.class.build_cart(payload) }
 
     it 'returns the right date attributes' do
       @result['create_date'].should == payload['placed_on']
