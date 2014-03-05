@@ -2,27 +2,23 @@ require 'spec_helper'
 
 describe Jirafe::CartBuilder do
   let(:payload) do
-    {
-      'cart' => Factories.order,
-      'original' => Factories.original
-    }
+    Factories.order
   end
 
   describe '.build_cart' do
     before(:each) { @result = subject.class.build_cart(payload, 'cart') }
 
     it 'returns the right date attributes' do
-      @result['create_date'].should == payload['original']['created_at']
-      @result['change_date'].should == payload['original']['updated_at']
+      @result['create_date'].should == payload['placed_on']
+      @result['change_date'].should == payload['updated_at']
     end
 
     it 'returns the right total attributes' do
-      @result['subtotal'].should == payload['original']['subtotal'].to_f
-      @result['total'].should == payload['original']['total'].to_f
-      @result['total_tax'].should == payload['original']['tax_total'].to_f
-      @result['total_shipping'].should == payload['original']['ship_total'].to_f
-      @result['total_payment_cost'].should == payload['original']['payment_total'].to_f
-      @result['total_discounts'].should == payload['original']['adjustment_total'].to_f
+      @result['subtotal'].should == payload['subtotal'].to_f
+      @result['total'].should == payload['totals']['order'].to_f
+      @result['total_tax'].should == payload['totals']['tax'].to_f
+      @result['total_shipping'].should == payload['totals']['shipping'].to_f
+      @result['total_payment_cost'].should == payload['totals']['payment'].to_f
     end
 
     it 'returns the right items attributes' do
