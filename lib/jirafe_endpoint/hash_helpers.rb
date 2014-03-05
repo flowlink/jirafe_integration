@@ -1,7 +1,7 @@
 module Jirafe
   module HashHelpers
     def items_hash(payload)
-      payload['original']['line_items'].each_with_index.map do |line_item, i|
+      payload['line_items'].each_with_index.map do |line_item, i|
         {
           'id' => line_item['id'].to_s,
           'create_date' => line_item['created_at'],
@@ -14,15 +14,15 @@ module Jirafe
           'price' => line_item['price'].to_f,
           'product' => {
             'id' => line_item['variant']['product_id'].to_s,
-            'create_date' => line_item['variant']['product_created_at'],
-            'change_date' => line_item['variant']['product_updated_at'],
+            'create_date' => line_item['variant']['product']['created_at'],
+            'change_date' => line_item['variant']['product']['updated_at'],
             'is_product' => true,
             'is_sku' => true,
-            'brand' => determine_product_brand(line_item['variant']['product'], payload['brand_category_taxonomy']),
+            'brand' => determine_product_brand(line_item['variant']['product'], payload['jirafe.brand_category_taxonomy']),
             'name' => line_item['variant']['name'],
             'code' => line_item['variant']['sku'],
             'categories' => categories_hash(line_item['variant']['product']),
-            'images' => determine_product_images(line_item['variant']['images'], payload['store_url'])
+            'images' => determine_product_images(line_item['variant']['images'], payload['jirafe.store_url'])
           }
         }
       end
@@ -30,10 +30,10 @@ module Jirafe
 
     def cart_customer_hash(payload)
       {
-        'id' => payload['original']['user_id'].to_s,
+        'id' => payload['user_id'].to_s || '',
         'create_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         'change_date' => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-        'email' => payload['original']['email'] || ''
+        'email' => payload['email'] || ''
       }
     end
 
@@ -50,10 +50,10 @@ module Jirafe
 
     def visit_hash(payload)
       {
-        'visit_id' => payload['original']['visit_id'].to_s,
-        'visitor_id' => payload['original']['visitor_id'].to_s,
-        'pageview_id' => payload['original']['pageview_id'].to_s,
-        'last_pageview_id' => payload['original']['last_pageview_id'].to_s
+        'visit_id' => payload['visit_id'].to_s,
+        'visitor_id' => payload['visitor_id'].to_s,
+        'pageview_id' => payload['pageview_id'].to_s,
+        'last_pageview_id' => payload['last_pageview_id'].to_s
       }
     end
 

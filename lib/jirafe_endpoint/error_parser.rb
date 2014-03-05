@@ -7,7 +7,7 @@ module Jirafe
     end
 
     def self.response_has_errors?(response)
-      response.has_key?('errors')
+      response.code == 400 || response.has_key?('errors')
     end
   end
 end

@@ -3,16 +3,16 @@ module Jirafe
     class << self
       def build_cart(payload, payload_type)
         {
-          'id' => "C#{payload[payload_type]['number']}",
-          'create_date' => payload['original']['created_at'],
-          'change_date' => payload['original']['updated_at'],
-          'subtotal' => payload['original']['item_total'].to_f,
-          'total' => payload['original']['total'].to_f,
-          'total_tax' => payload['original']['tax_total'].to_f,
-          'total_shipping' => payload['original']['ship_total'].to_f,
-          'total_payment_cost' => payload['original']['payment_total'].to_f,
+          'id' => payload['number'],
+          'create_date' => payload['placed_on'],
+          'change_date' => payload['updated_at'],
+          'subtotal' => payload['item_total'].to_f,
+          'total' => payload['total'].to_f,
+          'total_tax' => payload['tax_total'].to_f,
+          'total_shipping' => payload['ship_total'].to_f,
+          'total_payment_cost' => payload['payment_total'].to_f,
           'total_discounts' => 0,
-          'currency' => payload[payload_type]['currency'],
+          'currency' => payload['currency'],
           'items' => HashHelpers.items_hash(payload),
           'customer' => HashHelpers.cart_customer_hash(payload),
           'visit' => HashHelpers.visit_hash(payload)

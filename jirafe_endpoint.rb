@@ -36,14 +36,13 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
     process_result code
   end
 
-  post '/import_cart' do
+  post '/add_cart' do
     begin
-      client = Jirafe::Client.new(@config['jirafe.site_id'], @config['jirafe.access_token'])
-      response = client.send_cart(@message[:payload])
+      client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
+      response = client.send_cart(@payload[:cart].merge(@payload['parameters']))
       code = 200
 
-      add_notification 'info', 'Cart event sent to Jirafe',
-        "A cart event for #{@message[:payload]['cart']['number']} was sent to Jirafe."
+      set_summary "A cart event for #{@payload[:cart]} was sent to Jirafe."
     rescue => e
       code = 500
       error_notification(e)

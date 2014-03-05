@@ -78,12 +78,12 @@ describe Jirafe::Client do
   describe '#send_cart' do
     before(:each) do
       Jirafe::CartBuilder.should_receive(:build_cart).and_call_original
-      @payload['cart'] = Factories.order
+      @payload.merge!(Factories.order)
     end
 
     context 'success' do
       it 'sends the cart to jirafe' do
-        VCR.use_cassette('import_new_cart') do
+        VCR.use_cassette('import_cart') do
           subject.send_cart(@payload).should be_true
         end
       end
@@ -91,8 +91,8 @@ describe Jirafe::Client do
 
     context 'failure' do
       it 'raises JirafeEndpointError' do
-        @payload['original']['created_at'] = nil
-        VCR.use_cassette('import_new_cart_fail') do
+        @payload['placed_on'] = nil
+        VCR.use_cassette('import_cart_fail') do
           expect { subject.send_cart(@payload) }.to raise_error(JirafeEndpointError)
         end
       end

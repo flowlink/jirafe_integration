@@ -78,44 +78,36 @@ describe JirafeEndpoint do
     end
   end
 
-  describe '/import_cart' do
+  describe '/add_cart' do
     context 'success' do
       it 'imports carts' do
         message = {
-          message_id: '123456',
-          message: 'cart:new',
-          payload: {
-            cart: order,
-            original: original,
-            parameters: params
-          }
+          request_id: '123456',
+          parameters: params,
+          cart: order
         }.to_json
 
         VCR.use_cassette('import_new_cart') do
-          post '/import_cart', message, auth
+          post '/add_cart', message, auth
           last_response.status.should == 200
-          last_response.body.should match /cart event/
+          last_response.body.should match /was sent to Jirafe/
         end
       end
     end
 
     context 'failure' do
       order = Factories.order
-      order['totals']['order'] = nil
+      order['placed_on'] = nil
 
       it 'returns error details' do
         message = {
-          message_id: '123456',
-          message: 'cart:new',
-          payload: {
-            cart: order,
-            original: original,
-            parameters: params
-          }
+          request_id: '123456',
+          cart: order,
+          parameters: params
         }.to_json
 
         VCR.use_cassette('import_new_cart_fail') do
-          post '/import_cart', message, auth
+          post '/add_cart', message, auth
           last_response.status.should == 500
           last_response.body.should match /None is not of type/
         end
