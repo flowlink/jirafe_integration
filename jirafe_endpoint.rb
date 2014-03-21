@@ -47,7 +47,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       response = client.send_cart(@payload[:cart].merge(@payload['parameters']))
       code = 200
 
-      set_summary "A cart event for #{@payload[:cart]} was sent to Jirafe."
+      set_summary "A cart event was sent to Jirafe."
     rescue => e
       code = 500
       error_notification(e)
@@ -62,7 +62,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       response = client.send_cart(@payload[:cart].merge(@payload['parameters']))
       code = 200
 
-      set_summary "A cart event for #{@payload[:cart]} was sent to Jirafe."
+      set_summary "A cart event was sent to Jirafe."
     rescue => e
       code = 500
       error_notification(e)
