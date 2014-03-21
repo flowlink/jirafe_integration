@@ -5,7 +5,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_order' do
     begin
-      client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
+      client = Jirafe::Client.new(@payload['parameters']['jirafe_site_id'], @payload['parameters']['jirafe_access_token'])
       @payload[:order].merge!(@payload['parameters'])
 
       response = client.send_new_order(@payload[:order])
@@ -22,7 +22,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
   post '/update_order' do
     begin
-      client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
+      client = Jirafe::Client.new(@payload['parameters']['jirafe_site_id'], @payload['parameters']['jirafe_access_token'])
       @payload[:order].merge!(@payload['parameters'])
       order_state = @payload[:order][:status]
 
@@ -43,7 +43,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_cart' do
     begin
-      client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
+      client = Jirafe::Client.new(@payload['parameters']['jirafe_site_id'], @payload['parameters']['jirafe_access_token'])
       response = client.send_cart(@payload[:cart].merge(@payload['parameters']))
       code = 200
 
@@ -58,7 +58,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
   post '/update_cart' do
     begin
-      client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
+      client = Jirafe::Client.new(@payload['parameters']['jirafe_site_id'], @payload['parameters']['jirafe_access_token'])
       response = client.send_cart(@payload[:cart].merge(@payload['parameters']))
       code = 200
 
@@ -73,7 +73,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_product' do
     begin
-      client = Jirafe::Client.new(@payload['parameters']['jirafe.site_id'], @payload['parameters']['jirafe.access_token'])
+      client = Jirafe::Client.new(@payload['parameters']['jirafe_site_id'], @payload['parameters']['jirafe_access_token'])
       response = client.send_product(@payload[:product])
       code = 200
 

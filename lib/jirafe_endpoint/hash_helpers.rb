@@ -18,11 +18,11 @@ module Jirafe
             'change_date' => line_item['variant']['product']['updated_at'],
             'is_product' => true,
             'is_sku' => true,
-            'brand' => determine_product_brand(line_item['variant']['product'], payload['jirafe.brand_category_taxonomy']),
+            'brand' => determine_product_brand(line_item['variant']['product'], payload['jirafe_brand_category_taxonomy']),
             'name' => line_item['variant']['name'],
             'code' => line_item['variant']['sku'],
             'categories' => categories_hash(line_item['variant']['product']),
-            'images' => determine_product_images(line_item['variant']['images'], payload['jirafe.store_url'])
+            'images' => determine_product_images(line_item['variant']['images'], payload['jirafe_store_url'])
           }
         }
       end
