@@ -3,6 +3,11 @@ require_relative './lib/jirafe_endpoint'
 class JirafeEndpoint < EndpointBase::Sinatra::Base
   set :logging, true
 
+  Honeybadger.configure do |config|
+    config.api_key = ENV['HONEYBADGER_KEY']
+    config.environment_name = ENV['RACK_ENV']
+  end
+
   post '/add_order' do
     begin
       client = Jirafe::Client.new(@payload['parameters']['jirafe_site_id'], @payload['parameters']['jirafe_access_token'])
@@ -87,6 +92,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
   end
 
   def error_notification(error)
-    set_summary "A Jirafe Endpoint error has occured: #{error.message} BACKTRACE: #{error.backtrace}"
+    log_exception(error)
+    set_summary "A Jirafe Endpoint error has occured: #{error.message}"
   end
 end
