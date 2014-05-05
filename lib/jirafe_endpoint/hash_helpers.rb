@@ -2,7 +2,7 @@ module Jirafe
   module HashHelpers
     def items_hash(payload)
       payload['line_items'].each_with_index.map do |line_item, i|
-        {
+        hash = {
           'id' => line_item['id'].to_s,
           'create_date' => line_item['created_at'],
           'change_date' => line_item['updated_at'],
@@ -14,17 +14,26 @@ module Jirafe
           'price' => line_item['price'].to_f,
           'product' => {
             'id' => line_item['variant']['product_id'].to_s,
-            'create_date' => line_item['variant']['product']['created_at'],
-            'change_date' => line_item['variant']['product']['updated_at'],
             'is_product' => true,
             'is_sku' => true,
-            'brand' => determine_product_brand(line_item['variant']['product'], payload['jirafe_brand_category_taxonomy']),
             'name' => line_item['variant']['name'],
             'code' => line_item['variant']['sku'],
-            'categories' => categories_hash(line_item['variant']['product']),
             'images' => determine_product_images(line_item['variant']['images'], payload['jirafe_store_url'])
           }
         }
+
+        if line_item['variant']['product'].is_a? Hash
+          product = {
+            'create_date' => line_item['variant']['product']['created_at'],
+            'change_date' => line_item['variant']['product']['updated_at'],
+            'categories' => categories_hash(line_item['variant']['product']),
+            'brand' => determine_product_brand(line_item['variant']['product'], payload['jirafe_brand_category_taxonomy']),
+          }
+
+          hash.merge! product
+        end
+
+        hash
       end
     end
 

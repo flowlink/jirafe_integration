@@ -25,6 +25,20 @@ describe Jirafe::CartBuilder do
       @result['items'].should == Jirafe::HashHelpers.items_hash(payload)
     end
 
+    context "product hash is not provided nested in variant" do
+      let(:payload) do
+        order = Factories.order
+        order['line_items'].each do |line_item|
+          line_item['variant'].delete 'product'
+        end
+        order
+      end
+
+      it 'doesn blow' do
+        @result['items'].should == Jirafe::HashHelpers.items_hash(payload)
+      end
+    end
+
     it 'returns the right customer attributes' do
       @result['customer'].should == Jirafe::HashHelpers.cart_customer_hash(payload)
     end
