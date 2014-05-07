@@ -1,7 +1,7 @@
 module Jirafe
   module HashHelpers
     def items_hash(payload)
-      payload['line_items'].each_with_index.map do |line_item, i|
+      (payload['line_items'] || []).each_with_index.map do |line_item, i|
         hash = {
           'id' => line_item['id'].to_s,
           'create_date' => line_item['created_at'],
