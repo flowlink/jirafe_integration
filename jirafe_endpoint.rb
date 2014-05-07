@@ -17,6 +17,9 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
       code = 200
       set_summary "The order #{@payload[:order][:number]} was sent to Jirafe."
+    rescue JirafeEndpointError => e
+      code = 500
+      set_summary "Validation error has occured: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -38,6 +41,9 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
         response = client.send_canceled_order(@payload[:order])
         set_summary "The order #{@payload[:order][:number]} was canceled on Jirafe."
       end
+    rescue JirafeEndpointError => e
+      code = 500
+      set_summary "Validation error has occured: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -53,6 +59,9 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       code = 200
 
       set_summary "A cart event was sent to Jirafe."
+    rescue JirafeEndpointError => e
+      code = 500
+      set_summary "Validation error has occured: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -68,6 +77,9 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       code = 200
 
       set_summary "A cart event was sent to Jirafe."
+    rescue JirafeEndpointError => e
+      code = 500
+      set_summary "Validation error has occured: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -83,6 +95,9 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       code = 200
 
       set_summary "The product #{@payload[:product]['sku']} was sent to Jirafe."
+    rescue JirafeEndpointError => e
+      code = 500
+      set_summary "Validation error has occured: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
