@@ -14,6 +14,7 @@ group :test do
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'rack-test'
   gem 'simplecov', require: false
+  gem 'pry'
 end
 
 group :production do
@@ -23,7 +24,6 @@ end
 
 group :development do
   gem 'shotgun'
-  gem 'pry'
   gem 'guard-rspec'
   gem 'terminal-notifier-guard'
 end
