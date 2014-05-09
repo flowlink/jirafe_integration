@@ -19,7 +19,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       set_summary "The order #{@payload[:order][:number]} was sent to Jirafe."
     rescue JirafeEndpointError => e
       code = 500
-      set_summary "Validation error has occured: #{e.message}"
+      set_summary "Validation error has ocurred: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -43,7 +43,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       end
     rescue JirafeEndpointError => e
       code = 500
-      set_summary "Validation error has occured: #{e.message}"
+      set_summary "Validation error has ocurred: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -61,7 +61,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       set_summary "A cart event was sent to Jirafe."
     rescue JirafeEndpointError => e
       code = 500
-      set_summary "Validation error has occured: #{e.message}"
+      set_summary "Validation error has ocurred: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -79,7 +79,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       set_summary "A cart event was sent to Jirafe."
     rescue JirafeEndpointError => e
       code = 500
-      set_summary "Validation error has occured: #{e.message}"
+      set_summary "Validation error has ocurred: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -97,7 +97,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
       set_summary "The product #{@payload[:product]['sku']} was sent to Jirafe."
     rescue JirafeEndpointError => e
       code = 500
-      set_summary "Validation error has occured: #{e.message}"
+      set_summary "Validation error has ocurred: #{e.message}"
     rescue => e
       code = 500
       error_notification(e)
@@ -108,6 +108,6 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
 
   def error_notification(error)
     log_exception(error)
-    set_summary "A Jirafe Endpoint error has occured: #{error.message}"
+    set_summary "A Jirafe Endpoint error has ocurred: #{error.message}"
   end
 end
