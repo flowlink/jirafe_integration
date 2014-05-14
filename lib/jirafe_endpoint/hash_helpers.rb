@@ -22,6 +22,7 @@ module Jirafe
           }
         }
 
+
         if line_item['variant']['product'].is_a? Hash
           product = {
             'create_date' => line_item['variant']['product']['created_at'],
@@ -30,7 +31,7 @@ module Jirafe
             'brand' => determine_product_brand(line_item['variant']['product'], payload['jirafe_brand_category_taxonomy']),
           }
 
-          hash.merge! product
+          hash['product'].merge! product
         end
 
         hash
