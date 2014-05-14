@@ -28,6 +28,10 @@ group :development do
   gem 'terminal-notifier-guard'
 end
 
+group :development, :test do
+  gem 'pry-byebug'
+end
+
 gem 'endpoint_base', github: 'spree/endpoint_base'
   # :path => '../endpoint_base'
 gem 'honeybadger'
