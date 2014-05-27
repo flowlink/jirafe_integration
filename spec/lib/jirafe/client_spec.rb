@@ -97,7 +97,7 @@ describe Jirafe::Client do
 
   describe '#send_product' do
     before(:each) do
-      Jirafe::ProductBuilder.should_receive(:build_product).and_call_original
+      Jirafe::ProductBuilder.any_instance.should_receive(:build).and_call_original
       @payload = Factories.product
     end
 

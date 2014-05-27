@@ -38,7 +38,7 @@ describe Jirafe::OrderBuilder do
       @result['visit'].should == Jirafe::HashHelpers.visit_hash(payload)
     end
 
-    it 'returns product brands' do
+    xit 'returns product brands' do
       @result['items'].first['product']['brand'].should == "Apache"
     end
 

@@ -162,4 +162,41 @@ describe JirafeEndpoint do
       end
     end
   end
+
+  describe '/update_product' do
+    context 'success' do
+      it 'imports a product' do
+        message = {
+          request_id: '123456',
+          parameters: params,
+          product: Factories.product
+        }.to_json
+
+        VCR.use_cassette('import_new_product') do
+          post '/update_product', message, auth
+          last_response.status.should == 200
+          last_response.body.should match /was sent to Jirafe/
+        end
+      end
+    end
+
+    context 'failure' do
+      product = Factories.order
+      product['id'] = nil
+
+      it 'returns error details' do
+        message = {
+          message_id: '123456',
+          parameters: params,
+          product: product
+        }.to_json
+
+        VCR.use_cassette('import_new_product_fail') do
+          post '/update_product', message, auth
+          last_response.status.should == 500
+          last_response.body.should match /None is not of type/
+        end
+      end
+    end
+  end
 end

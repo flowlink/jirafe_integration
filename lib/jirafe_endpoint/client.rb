@@ -75,15 +75,15 @@ module Jirafe
     end
 
     def send_product(payload)
-      product_hash = Jirafe::ProductBuilder.build_product(payload)
+      products = Jirafe::ProductBuilder.new(payload).build
 
       options = {
         headers: headers,
-        body: product_hash.to_json
+        body: { product: products }.to_json
       }
 
-      response = self.class.post('/product', options)
-      validate_response(response)
+      response = self.class.post('/batch', options)
+      validate_batch_response(response)
     end
 
     private

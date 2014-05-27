@@ -2,10 +2,12 @@
 http_interactions:
 - request:
     method: post
-    uri: https://event.jirafe.com/v2/123/product
+    uri: https://event.jirafe.com/v2/123/batch
     body:
       encoding: UTF-8
-      string: '{"id":"12345","code":"ROR-TS","create_date":"2014-02-03T19:22:54.386Z","change_date":"2014-02-03T19:22:54.386Z","is_product":true,"is_sku":true}'
+      string: '{"product":[{"id":"ROR-TS","code":"ROR-TS","create_date":"2014-02-03T19:22:54.386Z","change_date":"2014-02-03T19:22:54.386Z","is_product":true,"is_sku":true,"categories":[{"id":"t-shirts","name":"T-Shirts"},{"id":"spree","name":"Spree"}],"images":[]},{"create_date":"2014-02-03T19:22:54.386Z","change_date":"2014-02-03T19:22:54.386Z","id":"ROR-TS-small","code":"ROR-TS-small","is_product":false,"is_sku":true,"base_product":{"id":"ROR-TS","name":"Ruby
+        on Rails T-Shirt","code":"ROR-TS"}},{"create_date":"2014-02-03T19:22:54.386Z","change_date":"2014-02-03T19:22:54.386Z","id":"ROR-TS-medium","code":"ROR-TS-medium","is_product":false,"is_sku":true,"base_product":{"id":"ROR-TS","name":"Ruby
+        on Rails T-Shirt","code":"ROR-TS"}}]}'
     headers:
       Authorization:
       - Bearer 123
@@ -19,19 +21,18 @@ http_interactions:
       Server:
       - nginx/1.1.19
       Date:
-      - Tue, 04 Mar 2014 16:16:32 GMT
+      - Tue, 27 May 2014 15:28:47 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '21'
+      - '128'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: |-
-        {
-          "success": true
-        }
+      string: "{\n  \"product\": [\n    {\n      \"success\": true\n    }, \n    {\n
+        \     \"success\": true\n    }, \n    {\n      \"success\": true\n    }\n
+        \ ]\n}"
     http_version: 
-  recorded_at: Tue, 04 Mar 2014 16:16:27 GMT
+  recorded_at: Tue, 27 May 2014 15:28:47 GMT
 recorded_with: VCR 2.8.0

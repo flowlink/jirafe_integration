@@ -11,6 +11,22 @@ module Factories
         "fabric"=> "cotton",
       },
       "options"=> [ "color", "size" ],
+      "taxons"=> [
+        ['Categories', 'Clothes', 'T-Shirts'],
+        ['Brands', 'Spree']
+      ],
+      "images" => [
+        {
+          "url"=> "http=>//dummyimage.com/600x400/000/fff.jpg&text=Spree T-Shirt",
+          "position"=> 1,
+          "title"=> "Spree T-Shirt - Grey Small",
+          "type"=> "thumbnail",
+          "dimensions"=> {
+            "height"=> 220,
+            "width"=> 100
+          }
+        }
+      ],
       "variants"=> [
         {
           "name"=> "Ruby on Rails T-Shirt S",
@@ -19,6 +35,18 @@ module Factories
             "size"=> "small",
             "color"=> "white"
           },
+          "images" => [
+            {
+              "url"=> "http=>//dummyimage.com/600x400/000/fff.jpg&text=Spree T-Shirt",
+              "position"=> 1,
+              "title"=> "Spree T-Shirt - Grey Small",
+              "type"=> "thumbnail",
+              "dimensions"=> {
+                "height"=> 220,
+                "width"=> 100
+              }
+            }
+          ]
         },
         {
           "name"=> "Ruby on Rails T-Shirt M",

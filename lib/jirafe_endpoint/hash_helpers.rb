@@ -83,6 +83,15 @@ module Jirafe
       end
     end
 
+    def taxons_hash(product_payload)
+      product_payload['taxons'].map do |taxon|
+        {
+          'id' => taxon.last.downcase,
+          'name' => taxon.last
+        }
+      end
+    end
+
     def determine_product_brand(product_payload, brand_taxonomy_id)
       return '' unless brand_taxonomy_id
       result = product_payload['taxons'].detect { |taxon| taxon['taxonomy_id'] == brand_taxonomy_id.to_i }
@@ -94,10 +103,13 @@ module Jirafe
 
       result = []
       images_payload.each do |image|
-        if image['attachment_url'].start_with?('http')
+        if image['attachment_url'].present? && image['attachment_url'].start_with?('http')
           url = image['attachment_url']
+        elsif image['url'].present? && image['url'].start_with?('http')
+          url = image['url']
         else
-          url = "#{store_url.sub(/(\/)+$/, '')}#{image['attachment_url']}"
+          url = "#{store_url.sub(/(\/)+$/, '')}#{image['attachment_url']}" if image['attachment_url'].present?
+          url = "#{store_url.sub(/(\/)+$/, '')}#{image['url']}" if image['url'].present?
         end
         result << { 'url' => url }
       end
@@ -105,6 +117,6 @@ module Jirafe
       result
     end
 
-    module_function :items_hash, :cart_customer_hash, :visit_hash, :categories_hash, :order_customer_hash, :determine_product_brand, :determine_product_images
+    module_function :items_hash, :cart_customer_hash, :visit_hash, :categories_hash, :order_customer_hash, :determine_product_brand, :determine_product_images, :taxons_hash
   end
 end

@@ -88,7 +88,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
     process_result code
   end
 
-  post '/add_product' do
+  post %r{(add_product|update_product)$} do
     begin
       client = Jirafe::Client.new(@payload['parameters']['jirafe_site_id'], @payload['parameters']['jirafe_access_token'])
       response = client.send_product(@payload[:product])
