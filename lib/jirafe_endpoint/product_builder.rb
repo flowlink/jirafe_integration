@@ -18,8 +18,8 @@ module Jirafe
       product = {
         'id'          => payload['sku'].to_s,
         'code'        => payload['sku'],
-        'create_date' => payload['updated_at'],
-        'change_date' => payload['updated_at'],
+        'create_date' => payload['available_on'],
+        'change_date' => payload['available_on'],
         'is_product'  => true,
         'is_sku'      => true
       }
@@ -35,8 +35,8 @@ module Jirafe
 
       payload['variants'].each do |variant|
         product = {
-          'create_date' => payload['updated_at'],
-          'change_date' => payload['updated_at'],
+          'create_date' => payload['available_on'],
+          'change_date' => payload['available_on'],
           'id'          => variant['sku'],
           'code'        => variant['sku'],
           'is_product' => false,
