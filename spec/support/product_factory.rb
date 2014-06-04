@@ -6,6 +6,7 @@ module Factories
       "description"=> "Some description text for the product.",
       "sku"=> sku,
       "price"=> 31,
+      "created_at" => "2014-02-03T19:00:54.386Z",
       "updated_at" => "2014-02-03T19:22:54.386Z",
       "properties"=> {
         "fabric"=> "cotton",

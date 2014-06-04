@@ -9,6 +9,10 @@ describe Jirafe::ProductBuilder do
     Factories.product.merge(Factories.parameters)
   end
 
+  let(:payload_with_available_on) do
+    Factories.product.merge(Factories.parameters).merge({'available_on' => '2014-02-03T15:00:54.386Z'})
+  end
+
   describe '.build' do
     before(:each) { @result = subject.new(payload).build }
 
@@ -22,8 +26,14 @@ describe Jirafe::ProductBuilder do
     end
 
     it 'returns the right date attributes' do
-      @result.first['create_date'].should == payload['updated_at']
+      @result.first['create_date'].should == payload['created_at']
       @result.first['change_date'].should == payload['updated_at']
+    end
+
+    it 'returns the right date attributes with available_on' do
+      result_with_available_on = subject.new(payload_with_available_on).build
+      result_with_available_on.first['create_date'].should == payload_with_available_on['available_on']
+      result_with_available_on.first['change_date'].should == payload_with_available_on['available_on']
     end
 
     it 'returns a product for the original product and each variant' do
