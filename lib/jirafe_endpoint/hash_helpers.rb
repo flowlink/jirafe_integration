@@ -18,7 +18,7 @@ module Jirafe
             'is_sku' => true,
             'name' => line_item['variant']['name'],
             'code' => line_item['variant']['sku'],
-            'images' => determine_product_images(line_item['variant']['images'], payload['jirafe_store_url'])
+            'images' => determine_product_images(line_item['variant']['images'] || [], payload['jirafe_store_url'])
           }
         }
 
