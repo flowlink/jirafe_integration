@@ -53,15 +53,15 @@ module Jirafe
     end
 
     def create_date(payload)
-      return payload['available_on'] if payload.key?('available_on') && payload['available_on']
-      return payload['created_at'] if payload.key?('created_at') && payload['created_at']
-      ''
+      return DateTime.parse(payload['available_on']).to_s if payload.key?('available_on') && payload['available_on']
+      return DateTime.parse(payload['created_at']).to_s if payload.key?('created_at') && payload['created_at']
+      DateTime.now.to_s
     end
 
     def change_date(payload)
-      return payload['available_on'] if payload.key?('available_on') && payload['available_on']
-      return payload['updated_at'] if payload.key?('updated_at') && payload['updated_at']
-      ''
+      return DateTime.parse(payload['available_on']).to_s if payload.key?('available_on') && payload['available_on']
+      return DateTime.parse(payload['updated_at']).to_s if payload.key?('updated_at') && payload['updated_at']
+      DateTime.now.to_s
     end
   end
 end

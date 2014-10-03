@@ -26,14 +26,14 @@ describe Jirafe::ProductBuilder do
     end
 
     it 'returns the right date attributes' do
-      @result.first['create_date'].should == payload['created_at']
-      @result.first['change_date'].should == payload['updated_at']
+      @result.first['create_date'].should == DateTime.parse(payload['created_at']).to_s
+      @result.first['change_date'].should == DateTime.parse(payload['updated_at']).to_s
     end
 
     it 'returns the right date attributes with available_on' do
       result_with_available_on = subject.new(payload_with_available_on).build
-      result_with_available_on.first['create_date'].should == payload_with_available_on['available_on']
-      result_with_available_on.first['change_date'].should == payload_with_available_on['available_on']
+      result_with_available_on.first['create_date'].should == DateTime.parse(payload_with_available_on['available_on']).to_s
+      result_with_available_on.first['change_date'].should == DateTime.parse(payload_with_available_on['available_on']).to_s
     end
 
     it 'returns a product for the original product and each variant' do
