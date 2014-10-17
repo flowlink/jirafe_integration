@@ -98,6 +98,7 @@ class JirafeEndpoint < EndpointBase::Sinatra::Base
     rescue JirafeEndpointError => e
       code = 500
       set_summary "Validation error has ocurred: #{e.message}"
+      error_notification(e)
     rescue => e
       code = 500
       error_notification(e)
