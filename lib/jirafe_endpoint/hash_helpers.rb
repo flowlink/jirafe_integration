@@ -77,8 +77,8 @@ module Jirafe
     def categories_hash(product_payload)
       product_payload['taxons'].map do |taxon|
         {
-          'id' => taxon['id'].to_s,
-          'name' => taxon['name']
+          'id' => taxon[:permalink],
+          'name' => taxon[:name]
         }
       end
     end
@@ -86,8 +86,8 @@ module Jirafe
     def taxons_hash(product_payload)
       product_payload['taxons'].map do |taxon|
         {
-          'id' => taxon.last.downcase,
-          'name' => taxon.last
+          'id' => taxon[:permalink],
+          'name' => taxon[:name]
         }
       end
     end

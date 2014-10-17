@@ -1,3 +1,5 @@
+require 'pry'
+
 module Jirafe
   class ProductBuilder
     attr_accessor :payload
