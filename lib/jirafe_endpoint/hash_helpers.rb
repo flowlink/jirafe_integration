@@ -75,7 +75,7 @@ module Jirafe
     end
 
     def categories_hash(product_payload)
-      product_payload['taxons'].map do |taxon|
+      product_payload['meta_data']['jirafe']['taxons'].map do |taxon|
         {
           'id' => taxon[:permalink],
           'name' => taxon[:name]
@@ -84,7 +84,7 @@ module Jirafe
     end
 
     def taxons_hash(product_payload)
-      product_payload['taxons'].map do |taxon|
+      product_payload['meta_data']['jirafe']['taxons'].map do |taxon|
         {
           'id' => taxon[:permalink],
           'name' => taxon[:name]
@@ -94,7 +94,7 @@ module Jirafe
 
     def determine_product_brand(product_payload, brand_taxonomy_id)
       return '' unless brand_taxonomy_id
-      result = product_payload['taxons'].detect { |taxon| taxon['taxonomy_id'] == brand_taxonomy_id.to_i }
+      result = product_payload['meta_data']['jirafe']['taxons'].detect { |taxon| taxon['taxonomy_id'] == brand_taxonomy_id.to_i }
       result ? result['name'] : ''
     end
 

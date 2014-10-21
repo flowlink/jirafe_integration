@@ -25,7 +25,7 @@ module Jirafe
         'is_product'  => true,
         'is_sku'      => true
       }
-      product.merge!('categories' => HashHelpers.taxons_hash(payload)) if payload['taxons'].present?
+      product.merge!('categories' => HashHelpers.taxons_hash(payload)) if payload['meta_data']['jirafe']['taxons'].present?
       product.merge!('images' => HashHelpers.determine_product_images(payload['images'], payload['jirafe_store_url'] || nil)) if payload['images'].present?
 
       [product]
